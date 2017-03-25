@@ -14,15 +14,15 @@ namespace AgroMarketRD.Service.Contracts
 
         public BaseAgroContract()
         {
-            Error = new ErrorResponse { code = "AG000", description = "Respuesta exitosa!" };
+            Error = new ErrorResponse { Code = "AG000", Description = "Respuesta exitosa!" };
         }
     }
 
     [DataContract]
     public class ErrorResponse {
         [DataMember]
-        public string code { get; set; }
+        public string Code { get; set; }
         [DataMember]
-        public string description { get; set; }
+        public string Description { get; set; }
     }
 }

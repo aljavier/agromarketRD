@@ -24,7 +24,7 @@ namespace AgroMarket.Service
         public LoginResponse SignIn(string user, string password)
         {
             return new LoginResponse { Token = Guid.NewGuid().ToString(),
-                Error = new ErrorResponse { code = "AG000", description = "OK" } };
+                Error = new ErrorResponse { Code = "AG000", Description = "OK" } };
         }
 
         /// <summary>
