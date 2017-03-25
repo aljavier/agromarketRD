@@ -13,7 +13,7 @@
             <summary>
             Autentificacion de compradores y productores (y auditores)
             </summary>
-            <param name="user">Nombre de usuario</param>
+            <param name="userName">Nombre de usuario</param>
             <param name="password">Contraseña</param>
             <returns>Token de acceso y id del usuario si fue exitoso.</returns>
         </member>
@@ -167,7 +167,7 @@
             <summary>
             Sign in
             </summary>
-            <param name="userId">user id</param>
+            <param name="userName">user name</param>
             <param name="password">password</param>
             <returns>Login response</returns>
         </member>

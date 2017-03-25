@@ -18,10 +18,10 @@ namespace AgroMarket.Service
         /// <summary>
         /// Autentificacion de compradores y productores (y auditores)
         /// </summary>
-        /// <param name="user">Nombre de usuario</param>
+        /// <param name="userName">Nombre de usuario</param>
         /// <param name="password">Contraseña</param>
         /// <returns>Token de acceso y id del usuario si fue exitoso.</returns>
-        public LoginResponse SignIn(string user, string password)
+        public LoginResponse SignIn(string userName, string password)
         {
             return new LoginResponse { Token = Guid.NewGuid().ToString(),
                 Error = new ErrorResponse { Code = "AG000", Description = "OK" } };

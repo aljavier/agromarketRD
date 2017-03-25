@@ -18,11 +18,11 @@ namespace AgroMarket.Service
         /// <summary>
         /// Sign in
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user name</param>
         /// <param name="password">password</param>
         /// <returns>Login response</returns>
         [OperationContract]
-        LoginResponse SignIn(string userId, string password);
+        LoginResponse SignIn(string userName, string password);
 
         /// <summary>
         /// Get products
