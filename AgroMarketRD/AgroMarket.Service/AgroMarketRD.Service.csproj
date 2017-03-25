@@ -96,7 +96,8 @@
     <Compile Include="AgroMarketService.svc.cs">
       <DependentUpon>AgroMarketService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Contracts\Product.cs" />
+    <Compile Include="Contracts\BaseAgroContract.cs" />
+    <Compile Include="Contracts\ProductResponse.cs" />
     <Compile Include="IAgroMarketService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -114,6 +115,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgroMarketRD.Core\AgroMarketRD.Core.csproj">
+      <Project>{6cb50c72-6e6d-4aeb-8c5a-178c96cd57fa}</Project>
+      <Name>AgroMarketRD.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
