@@ -140,6 +140,47 @@ namespace AgroMarket.Service
         [OperationContract]
         RequestResponse GetAllRequests(string userId, string token);
 
+        /// <summary>
+        /// Get a intention to buy
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <param name="intentionId">intention id</param>
+        /// <returns>Intention buying response</returns>
+        [OperationContract]
+        IntentionBuyingResponse GetIntentionBuying(string userId, string token, int intentionId);
+
+        /// <summary>
+        /// Cancel intention buying
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <param name="intentionId">intention id</param>
+        /// <returns>Cancel intention response</returns>
+        [OperationContract]
+        ErrorResponse CancelIntentionBuying(string userId, string token, int intentionId);
+
+        /// <summary>
+        /// Get all intentions to buy
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <returns>Get intentions buying response</returns>
+        [OperationContract]
+        IntentionBuyingResponse GetAllIntentionsBuying(string userId, string token);
+
+        /// <summary>
+        /// Make a intention to buy/sell
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <param name="offerId">offer id</param>
+        /// <param name="requestId">request id</param>
+        /// <param name="quantity">quantity</param>
+        /// <returns>Intention buying response</returns>
+        [OperationContract]
+        IntentionBuyingResponse MakeDeal(string userId, string token, int offerId, int requestId, int quantity = 0);
+
 
     }
 }
