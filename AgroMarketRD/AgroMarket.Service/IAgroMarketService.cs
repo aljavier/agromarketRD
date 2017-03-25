@@ -69,16 +69,17 @@ namespace AgroMarket.Service
         /// <param name="offerId">offer id</param>
         /// <returns>An offer of the productor</returns>
         [OperationContract]
-        OfferResponse GetOfferProductor(string userId, string token, int offerId);
+        OfferResponse GetOffer(string userId, string token, int offerId);
 
         /// <summary>
         /// Get all offers from a productor
         /// </summary>
         /// <param name="userId">user id</param>
         /// <param name="token">token</param>
+        /// <param name="productorId">productor id</param>
         /// <returns>Offers from productor</returns>
         [OperationContract]
-        OfferResponse GetOffersProductor(string userId, string token);
+        OfferResponse GetOffersProductor(string userId, string token, int productorId);
 
         /// <summary>
         /// Get all offers
@@ -88,5 +89,57 @@ namespace AgroMarket.Service
         /// <returns>All offers in the market</returns>
         [OperationContract]
         OfferResponse GetAllOffers(string userId, string token);
+
+        /// <summary>
+        /// Create a request of a product
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <param name="productId">product id</param>
+        /// <param name="quantity">quantity</param>
+        /// <returns>Create request response</returns>
+        [OperationContract]
+        GeneralResponse CreateRequest(string userId, string token, int productId, int quantity);
+
+        /// <summary>
+        /// Remove a request
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <param name="requestId">request id</param>
+        /// <returns>Remove request response</returns>
+        [OperationContract]
+        ErrorResponse RemoveRequest(string userId, string token, int requestId);
+
+        /// <summary>
+        /// Get a request
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <param name="requestId">request id</param>
+        /// <returns>Request response</returns>
+        [OperationContract]
+        RequestResponse GetRequest(string userId, string token, int requestId);
+
+        /// <summary>
+        /// Get requests from buyer
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <param name="buyerId">buyer id</param>
+        /// <returns>Requests from a buyer</returns>
+        [OperationContract]
+        RequestResponse GetRequestsBuyer(string userId, string token, int buyerId);
+
+        /// <summary>
+        /// Get all requests
+        /// </summary>
+        /// <param name="userId">user id</param>
+        /// <param name="token">token</param>
+        /// <returns>All requests in the market</returns>
+        [OperationContract]
+        RequestResponse GetAllRequests(string userId, string token);
+
+
     }
 }
