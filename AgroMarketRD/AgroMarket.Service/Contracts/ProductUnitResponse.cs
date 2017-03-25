@@ -7,16 +7,16 @@ using System.Web;
 namespace AgroMarketRD.Service.Contracts
 {
     [DataContract]
-    public class ProductResponse : BaseAgroContract
+    public class ProductUnitResponse : BaseAgroContract
     {
         [DataMember]
-        public List<Product> Products { get; set; }
+        public List<ProductUnit> UnitTypes { get; set; }
     }
 
     [DataContract]
-    public class Product {
+    public class ProductUnit {
         [DataMember]
-        public string Code { get; set; }
+        public int Id { get; set; }
         [DataMember]
         public string Description { get; set; }
     }

@@ -12,15 +12,26 @@ namespace AgroMarket.Service
 {
     public class AgroMarketService : IAgroMarketService
     {
-        public ProductResponse GetProducts(string user, string token)
+        public LoginResponse SignIn(string user, string password)
+        {
+            return new LoginResponse { Token = Guid.NewGuid().ToString(),
+                Error = new ErrorResponse { code = "AG000", description = "OK" } };
+        }
+
+        public ProductResponse GetProducts(string userId, string token)
         {
             var productos = new List<Product>();
             productos = new List<Product> {
-                new Product { code = "XXX", description = "bla bla"},
-                new Product { code = "YYYY", description = "WHATEVER"}
+                new Product { Code = "XXX", Description = "bla bla"},
+                new Product { Code = "YYYY", Description = "WHATEVER"}
             };
 
             return new ProductResponse { Products = productos };
+        }
+
+        public ProductUnitResponse GetUnitTypes(string userId, string token)
+        {
+            return new ProductUnitResponse();
         }
     }
 }

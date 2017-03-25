@@ -13,6 +13,12 @@ namespace AgroMarket.Service
     public interface IAgroMarketService
     {
         [OperationContract]
-        ProductResponse GetProducts(string user, string token);
+        LoginResponse SignIn(string userId, string password);
+
+        [OperationContract]
+        ProductResponse GetProducts(string userId, string token);
+
+        [OperationContract]
+        ProductUnitResponse GetUnitTypes(string userId, string token);
     }
 }
