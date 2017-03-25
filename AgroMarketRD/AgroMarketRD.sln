@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroMarketRD.Core", "AgroMarketRD.Core\AgroMarketRD.Core.csproj", "{6CB50C72-6E6D-4AEB-8C5A-178C96CD57FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroMarketRD.Service", "..\AgroMarket.Service\AgroMarketRD.Service.csproj", "{076A390E-A95B-425B-8D7F-ACE1132C614A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroMarketRD.Service", "AgroMarket.Service\AgroMarketRD.Service.csproj", "{076A390E-A95B-425B-8D7F-ACE1132C614A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
