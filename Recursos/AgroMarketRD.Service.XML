@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AgroMarketRD.Service</name>
+    </assembly>
+    <members>
+        <member name="T:AgroMarket.Service.AgroMarketService">
+            <summary>
+            Servicio web de la bolsa de productos agropecuarios de la Republica Dominicana.
+            </summary>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.SignIn(System.String,System.String)">
+            <summary>
+            Autentificacion de compradores y productores (y auditores)
+            </summary>
+            <param name="user">Nombre de usuario</param>
+            <param name="password">Contraseña</param>
+            <returns>Token de acceso y id del usuario si fue exitoso.</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetProducts(System.String,System.String)">
+            <summary>
+            Catalogo de los productos que se pueden vender y comprar en la bolsa.
+            </summary>
+            <param name="userId">Usuario id</param>
+            <param name="token">Token de acceso</param>
+            <returns>Lista de productos del mercado</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetUnitTypes(System.String,System.String)">
+            <summary>
+            Tipo de unidades de los productos. e.g. libras, sacos, etc.
+            </summary>
+            <param name="userId">Usuario id</param>
+            <param name="token">Token de acceso</param>
+            <returns>Los diferentes tipo de unidades de los productos del catalogo</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.CreateOffer(System.String,System.String)">
+            <summary>
+            Crea una oferta, solo util para productores.
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Id de la oferta creada y error de exitoso o fallido</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.RemoveOffer(System.String,System.String,System.Int32)">
+            <summary>
+            Borra una oferta, solo puede hacerse si es el propietario de la oferta.
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="offerId">oferta id</param>
+            <returns></returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetOffer(System.String,System.String,System.Int32)">
+            <summary>
+            Obtiene una oferta por el id
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="offerId">offer id</param>
+            <returns>Oferta solicitada si existe</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetOffersProductor(System.String,System.String,System.Int32)">
+            <summary>
+            Obtiene todas las ofertas de un productor
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="productorId">productor id</param>
+            <returns>Todas las ofertas del productor</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetAllOffers(System.String,System.String)">
+            <summary>
+            Obtiene todas las ofertas, de todos los productores
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Todas las ofertas disponibles en el mercado</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.CreateRequest(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Crea una solicitud de un producto
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="productId">productor id</param>
+            <param name="quantity">quantity</param>
+            <returns>Id del request creado</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.RemoveRequest(System.String,System.String,System.Int32)">
+            <summary>
+            Borra una solicitud creada, solo puede hacerlo quien la creó.
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="requestId">rquest id</param>
+            <returns>Error de exitosos o fallido</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetRequest(System.String,System.String,System.Int32)">
+            <summary>
+            Obtiene una solicitud de un producto por el id.
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="requestId">request id</param>
+            <returns>Solicitud del id si existe</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetRequestsBuyer(System.String,System.String,System.Int32)">
+            <summary>
+            Obtiene todas las solicitudes de un vendedor
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="buyerId">buyer id</param>
+            <returns>Todas las solicitudes del vendedor</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetAllRequests(System.String,System.String)">
+            <summary>
+            Obtiene todas las solicitudes hechas en el mercado que aun esten activas
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Lista de solicitudes disponibles</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetIntentionBuying(System.String,System.String,System.Int32)">
+            <summary>
+            Obtiene una intencion de compra por id
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="intentionId">intention id</param>
+            <returns>Intention de compra del id si existe</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.CancelIntentionBuying(System.String,System.String,System.Int32)">
+            <summary>
+            Cancela una intencion de compra, solo pueden hacerla las partes involucradas
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="intentionId">intention id</param>
+            <returns>Error de exitosos o fallido segun sea</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.GetAllIntentionsBuying(System.String,System.String)">
+            <summary>
+            Obtiene todas las intenciones de compra disponibles en el mercado. Para uso de la Auditoria.
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Todas las intenciones de compras activas o no</returns>
+        </member>
+        <member name="M:AgroMarket.Service.AgroMarketService.MakeDeal(System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Crea una intencion de compra.
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="offerId">offer id</param>
+            <param name="requestId">request id</param>
+            <param name="quantity">quantity, optional</param>
+            <returns>Informacion d ela intencion de compra con id y demas.</returns>
+        </member>
+        <member name="T:AgroMarket.Service.IAgroMarketService">
+            <summary>
+            Interfaz WCF Service AgroMarketRD
+            </summary>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.SignIn(System.String,System.String)">
+            <summary>
+            Sign in
+            </summary>
+            <param name="userId">user id</param>
+            <param name="password">password</param>
+            <returns>Login response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetProducts(System.String,System.String)">
+            <summary>
+            Get products
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Products response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetUnitTypes(System.String,System.String)">
+            <summary>
+            Get unit types
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Unit types response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.CreateOffer(System.String,System.String)">
+            <summary>
+            Create offer
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Create offer response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.RemoveOffer(System.String,System.String,System.Int32)">
+            <summary>
+            Remove an offer
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="offerId">offer id</param>
+            <returns>Remove an offer</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetOffer(System.String,System.String,System.Int32)">
+            <summary>
+            Get offer productor
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="offerId">offer id</param>
+            <returns>An offer of the productor</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetOffersProductor(System.String,System.String,System.Int32)">
+            <summary>
+            Get all offers from a productor
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="productorId">productor id</param>
+            <returns>Offers from productor</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetAllOffers(System.String,System.String)">
+            <summary>
+            Get all offers
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>All offers in the market</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.CreateRequest(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Create a request of a product
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="productId">product id</param>
+            <param name="quantity">quantity</param>
+            <returns>Create request response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.RemoveRequest(System.String,System.String,System.Int32)">
+            <summary>
+            Remove a request
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="requestId">request id</param>
+            <returns>Remove request response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetRequest(System.String,System.String,System.Int32)">
+            <summary>
+            Get a request
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="requestId">request id</param>
+            <returns>Request response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetRequestsBuyer(System.String,System.String,System.Int32)">
+            <summary>
+            Get requests from buyer
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="buyerId">buyer id</param>
+            <returns>Requests from a buyer</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetAllRequests(System.String,System.String)">
+            <summary>
+            Get all requests
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>All requests in the market</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetIntentionBuying(System.String,System.String,System.Int32)">
+            <summary>
+            Get a intention to buy
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="intentionId">intention id</param>
+            <returns>Intention buying response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.CancelIntentionBuying(System.String,System.String,System.Int32)">
+            <summary>
+            Cancel intention buying
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="intentionId">intention id</param>
+            <returns>Cancel intention response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.GetAllIntentionsBuying(System.String,System.String)">
+            <summary>
+            Get all intentions to buy
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <returns>Get intentions buying response</returns>
+        </member>
+        <member name="M:AgroMarket.Service.IAgroMarketService.MakeDeal(System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Make a intention to buy/sell
+            </summary>
+            <param name="userId">user id</param>
+            <param name="token">token</param>
+            <param name="offerId">offer id</param>
+            <param name="requestId">request id</param>
+            <param name="quantity">quantity</param>
+            <returns>Intention buying response</returns>
+        </member>
+    </members>
+</doc>
