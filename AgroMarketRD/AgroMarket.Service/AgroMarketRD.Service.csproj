@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\AgroMarketRD.Service.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -97,7 +98,11 @@
       <DependentUpon>AgroMarketService.svc</DependentUpon>
     </Compile>
     <Compile Include="Contracts\BaseAgroContract.cs" />
+    <Compile Include="Contracts\GeneralResponse.cs" />
+    <Compile Include="Contracts\LoginResponse.cs" />
+    <Compile Include="Contracts\OfferResponse.cs" />
     <Compile Include="Contracts\ProductResponse.cs" />
+    <Compile Include="Contracts\ProductUnitResponse.cs" />
     <Compile Include="IAgroMarketService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
