@@ -6,15 +6,17 @@ namespace AgroMarketRD.Core.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("venta")]
-    public partial class Venta
+    [Table("errores")]
+    public partial class Error
     {
         public int id { get; set; }
 
-        public int intencion_compra_id { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string codigo { get; set; }
 
-        public DateTime fecha_creacion { get; set; }
-
-        public virtual IntencionCompra intencion_compra { get; set; }
+        [Required]
+        [StringLength(250)]
+        public string descripcion { get; set; }
     }
 }

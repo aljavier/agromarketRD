@@ -6,12 +6,13 @@ namespace AgroMarketRD.Core.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tipo_usuario
+    [Table("tipo_usuario")]
+    public partial class TipoUsuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tipo_usuario()
+        public TipoUsuario()
         {
-            usuarios = new HashSet<usuario>();
+            usuarios = new HashSet<Usuario>();
         }
 
         public int id { get; set; }
@@ -21,6 +22,6 @@ namespace AgroMarketRD.Core.Entities
         public string descripcion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuarios { get; set; }
+        public virtual ICollection<Usuario> usuarios { get; set; }
     }
 }

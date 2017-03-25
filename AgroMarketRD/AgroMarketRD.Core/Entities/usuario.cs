@@ -7,14 +7,14 @@ namespace AgroMarketRD.Core.Entities
     using System.Data.Entity.Spatial;
 
     [Table("usuario")]
-    public partial class usuario
+    public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public usuario()
+        public Usuario()
         {
-            demandas = new HashSet<demanda>();
-            ofertas = new HashSet<oferta>();
-            sesions = new HashSet<sesion>();
+            demandas = new HashSet<Demanda>();
+            ofertas = new HashSet<Oferta>();
+            sesions = new HashSet<Sesion>();
         }
 
         public int id { get; set; }
@@ -42,17 +42,17 @@ namespace AgroMarketRD.Core.Entities
 
         public bool? activo { get; set; }
 
-        public virtual cuenta cuenta { get; set; }
+        public virtual Cuenta cuenta { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<demanda> demandas { get; set; }
+        public virtual ICollection<Demanda> demandas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<oferta> ofertas { get; set; }
+        public virtual ICollection<Oferta> ofertas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sesion> sesions { get; set; }
+        public virtual ICollection<Sesion> sesions { get; set; }
 
-        public virtual tipo_usuario tipo_usuario { get; set; }
+        public virtual TipoUsuario tipo_usuario { get; set; }
     }
 }

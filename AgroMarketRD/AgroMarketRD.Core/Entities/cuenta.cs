@@ -7,12 +7,12 @@ namespace AgroMarketRD.Core.Entities
     using System.Data.Entity.Spatial;
 
     [Table("cuenta")]
-    public partial class cuenta
+    public partial class Cuenta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public cuenta()
+        public Cuenta()
         {
-            usuarios = new HashSet<usuario>();
+            usuarios = new HashSet<Usuario>();
         }
 
         public int id { get; set; }
@@ -36,6 +36,6 @@ namespace AgroMarketRD.Core.Entities
         public bool activo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuarios { get; set; }
+        public virtual ICollection<Usuario> usuarios { get; set; }
     }
 }

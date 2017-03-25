@@ -7,7 +7,7 @@ namespace AgroMarketRD.Core.Entities
     using System.Data.Entity.Spatial;
 
     [Table("sesion")]
-    public partial class sesion
+    public partial class Sesion
     {
         public int id { get; set; }
 
@@ -19,6 +19,6 @@ namespace AgroMarketRD.Core.Entities
 
         public DateTime fecha_expiracion { get; set; }
 
-        public virtual usuario usuario { get; set; }
+        public virtual Usuario usuario { get; set; }
     }
 }

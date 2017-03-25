@@ -52,17 +52,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgroMarketDbContext.cs" />
-    <Compile Include="Entities\cuenta.cs" />
-    <Compile Include="Entities\demanda.cs" />
-    <Compile Include="Entities\intencion_compra.cs" />
-    <Compile Include="Entities\oferta.cs" />
-    <Compile Include="Entities\producto.cs" />
+    <Compile Include="Entities\Cuenta.cs" />
+    <Compile Include="Entities\Demanda.cs" />
+    <Compile Include="Entities\Error.cs" />
+    <Compile Include="Entities\IntencionCompra.cs" />
+    <Compile Include="Entities\Oferta.cs" />
+    <Compile Include="Entities\Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\sesion.cs" />
-    <Compile Include="Entities\tipo_unidad.cs" />
-    <Compile Include="Entities\tipo_usuario.cs" />
-    <Compile Include="Entities\usuario.cs" />
-    <Compile Include="Entities\venta.cs" />
+    <Compile Include="Entities\Sesion.cs" />
+    <Compile Include="Entities\TipoUnidad.cs" />
+    <Compile Include="Entities\TipoUsuario.cs" />
+    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Entities\Venta.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

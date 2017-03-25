@@ -6,13 +6,14 @@ namespace AgroMarketRD.Core.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tipo_unidad
+    [Table("tipo_unidad")]
+    public partial class TipoUnidad
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tipo_unidad()
+        public TipoUnidad()
         {
-            demandas = new HashSet<demanda>();
-            ofertas = new HashSet<oferta>();
+            demandas = new HashSet<Demanda>();
+            ofertas = new HashSet<Oferta>();
         }
 
         public int id { get; set; }
@@ -22,9 +23,9 @@ namespace AgroMarketRD.Core.Entities
         public string descripcion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<demanda> demandas { get; set; }
+        public virtual ICollection<Demanda> demandas { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<oferta> ofertas { get; set; }
+        public virtual ICollection<Oferta> ofertas { get; set; }
     }
 }
