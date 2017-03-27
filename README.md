@@ -15,4 +15,4 @@ Queda por crear al menos dos métodos (además de los de auditoría): un método
 
 Además falta la lógica de negocios de todos los métodos.
 
-Por favor, cualquier solicitud, sugerencia o inquietud exponerla aquí en el repositorio, abrir un *issue*.
+Por favor, cualquier solicitud, sugerencia o inquietud exponerla aquí en el repositorio, [abrir un issue](https://github.com/aljavier/agromarketRD/issues).
