@@ -26,3 +26,5 @@ Puede ser que algo se nos este pasando, si es así, por favor ayudar [abriendo u
 Además falta la lógica de negocios de todos los métodos.
 
 Por favor, cualquier solicitud, sugerencia o inquietud exponerla aquí en el repositorio, [abrir un issue](https://github.com/aljavier/agromarketRD/issues).
+
+<span style="color:red">Sabemos que estamos cortos de tiempo y todos tenemos mil y una cosa que hacer, intentaremos tener ese listo cuanto antes. Aunque no puedo comprometerme para hoy mismo.</span>
