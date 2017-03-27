@@ -13,6 +13,16 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
 
 Queda por crear al menos dos métodos (además de los de auditoría): un método que retorna a un comprador/productor quienes han ofertado algo a su demanda y un médoto de culminación del trato que ambas partes deben hacer.
 
+Sería algo así:
+1. **Un comprador tiene una demanda**: use el método de createRequest.
+2. **Un productor quiere hacer una oferta**: hace una oferta (createOffer) general, ahora decide hacerle esa oferta al comprador. La linkea con makeDeal por la offerId y el requestId.
+3. **Comprador quiere ver las ofertas a su demanda**: este es el metodo que nos falta hacer.
+4. **Comprador decide aceptar una oferta**: este sería otro método que nos faltaría. El comprador *firma* la compra.
+5. **Productor quiere saber si han aceptado su oferta**: otro método que nos faltaría. Entonces para concretar la oferta luego de llamar ese método el productor *firmaría* la oferta. 
+6. Ahí concluye la transacción y se desactiva la demanda. Asequible ahora sólo para consulta para ese productor/comprador y para auditoria en historico de ventas.
+
+Puede ser que algo se nos este pasando, si es así, por favor ayudar [abriendo un issue](https://github.com/aljavier/agromarketRD/issues).
+
 Además falta la lógica de negocios de todos los métodos.
 
 Por favor, cualquier solicitud, sugerencia o inquietud exponerla aquí en el repositorio, [abrir un issue](https://github.com/aljavier/agromarketRD/issues).
