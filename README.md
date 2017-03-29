@@ -27,46 +27,45 @@ Además falta la lógica de negocios de todos los métodos.
 
 Por favor, cualquier solicitud, sugerencia o inquietud exponerla aquí en el repositorio, [abrir un issue](https://github.com/aljavier/agromarketRD/issues).
 
-### Métodos a crear, **proposal** ###
+### Métodos a crear **(proposal)** ###
 
-GetDeal       -- Retorna las intenciones de compras pendientes de concretarse del comprador/productor
-  IntentionId
-  Comment
-  Buyer
-  BuyerId
-  ProductorId
-  Productor
+**GetDeal**:       Retorna las intenciones de compras pendientes de concretarse del comprador/productor.
+    * IntentionId
+    * Comment
+    * Buyer
+    * BuyerId
+    * ProductorId
+    * Productor
   
-SignDeal       --- Firma una compra/venta de parte de comprador/productor. Ambos deben firmarla (a.k.a llamar este método)
-  IntentionId
-  BuyerId
-  Buyer
-  productorId
-  Productor
-  Date
+**SignDeal**:       Firma una compra/venta de parte de comprador/productor. Ambos deben firmarla (a.k.a llamar este método).
+    * IntentionId
+    * BuyerId
+    * Buyer
+    * productorId
+    * Productor
+    * Date
 
-GetAlerts      --- Retorna el estado de compra/venta pendientes de concretarses (de llamar SignDeal) de un comprador/productor
-  IntentionId
-  Comment -- Descripcion oferta
-  Signers
-    ProductorId
-    Productor
-    Pending -- true or false
-    ==========================
-    BuyerId
-    Buyer
-    Pending -- true or false
+**GetAlerts**:      Retorna el estado de compra/venta pendientes de concretarses (de llamar SignDeal) de un comprador/productor.
+    * IntentionId
+    * Comment
+    * Signers
+    * ProductorId
+    * Productor
+    * Pending 
+    * BuyerId
+    * Buyer
+    * Pending 
  
-GetFinalizedDeals   --- Retorna las compras/ventas finalizadas (a.k.a firmadas) de un comprador/productor
-   IntentionId
-   OfferId
-   Comment
-   BuyerId
-   Buyer
-   ProductorId
-   Productor
-   Quantity
-   TotalAmount
+**GetFinalizedDeals**:   Retorna las compras/ventas finalizadas (a.k.a firmadas) de un comprador/productor.
+    * IntentionId
+    * OfferId
+    * Comment
+    * BuyerId
+    * Buyer
+    * ProductorId
+    * Productor
+    * Quantity
+    * TotalAmount
 
 ***Esto podría cambiar a la hora de hacerse.***
 
