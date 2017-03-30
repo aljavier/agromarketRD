@@ -225,12 +225,54 @@ namespace AgroMarket.Service
         /// <summary>
         /// Crea una oferta, solo util para productores.
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
+        /// <param name="cantidad">Cantidad</param>
+        /// <param name="codigoProducto">codigo producto</param>
+        /// <param name="precioUnidad">precio unidad</param>
+        /// <param name="tipoUnidad">tipo unidad</param>
         /// <returns>Id de la oferta creada y error de exitoso o fallido</returns>
-        public GeneralResponse CreateOffer(string userId, string token)
+        public GeneralResponse CreateOffer(string userName, string token, int cantidad, int tipoUnidad, 
+            decimal precioUnidad, string codigoProducto)
         {
-            throw new NotImplementedException();
+            GeneralResponse response = new GeneralResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    db.Ofertas.Add(new Oferta {
+                        Activo = true,
+                        Cantidad = cantidad,
+                        FechaCreacion = DateTime.Now,
+                        PrecioUnidad = precioUnidad,
+                        ProductoId = db.Productos.First(x => x.Codigo == codigoProducto).Id, // TODO: Validar que código producto es válido
+                        TipoUnidadId = tipoUnidad,
+                        UsuarioId = db.Usuarios.First(x => x.NombreUsuario == userName).Id
+                    });
+                    response.Id = db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+            }
+
+            return response;
         }
 
         /// <summary>

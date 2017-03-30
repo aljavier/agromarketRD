@@ -13,7 +13,8 @@ namespace AgroMarketRD.Core.Enums
             AG000 = 3,
             AG001 = 1,
             AG002 = 2,
-            AG003 = 4
+            AG003 = 4,
+            AG004 = 5
         }
     }
 }

@@ -54,11 +54,15 @@ namespace AgroMarket.Service
         /// <summary>
         /// Create offer
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
+        /// <param name="cantidad">Cantidad</param>
+        /// <param name="codigoProducto">codigo producto</param>
+        /// <param name="precioUnidad">precio unidad</param>
+        /// <param name="tipoUnidad">tipo unidad</param>
         /// <returns>Create offer response</returns>
         [OperationContract]
-        GeneralResponse CreateOffer(string userId, string token);
+        GeneralResponse CreateOffer(string userName, string token, int cantidad, int tipoUnidad, decimal precioUnidad, string codigoProducto);
 
         /// <summary>
         /// Remove an offer
