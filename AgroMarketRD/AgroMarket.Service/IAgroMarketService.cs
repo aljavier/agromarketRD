@@ -36,11 +36,11 @@ namespace AgroMarket.Service
         /// <summary>
         /// Get products
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <returns>Products response</returns>
         [OperationContract]
-        ProductResponse GetProducts(string userId, string token);
+        ProductResponse GetProducts(string userName, string token);
 
         /// <summary>
         /// Get unit types

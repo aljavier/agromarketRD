@@ -141,18 +141,42 @@ namespace AgroMarket.Service
         /// <summary>
         /// Catalogo de los productos que se pueden vender y comprar en la bolsa.
         /// </summary>
-        /// <param name="userId">Usuario id</param>
+        /// <param name="userName">Usuario id</param>
         /// <param name="token">Token de acceso</param>
         /// <returns>Lista de productos del mercado</returns>
-        public ProductResponse GetProducts(string userId, string token)
+        public ProductResponse GetProducts(string userName, string token)
         {
-            var productos = new List<Product>();
-            productos = new List<Product> {
-                new Product { Code = "XXX", Description = "bla bla"},
-                new Product { Code = "YYYY", Description = "WHATEVER"}
-            };
+            ProductResponse response = new ProductResponse();
 
-            return new ProductResponse { Products = productos };
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    response.Products = db.Productos.Select(x => new Product
+                    {
+                        Code = x.Codigo,
+                        Description = x.Descripcion
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+            }
+            return response;
         }
 
         /// <summary>

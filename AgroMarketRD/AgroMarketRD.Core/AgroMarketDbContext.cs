@@ -15,7 +15,7 @@ namespace AgroMarketRD.Core
 
         public virtual DbSet<Cuenta> Cuentas { get; set; }
         public virtual DbSet<Oferta> Ofertas { get; set; }
-        public virtual DbSet<Producto> Productores { get; set; }
+        public virtual DbSet<Producto> Productos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Sesion> Sesiones { get; set; }
         public virtual DbSet<TipoUnidad> TipoUnidad { get; set; }

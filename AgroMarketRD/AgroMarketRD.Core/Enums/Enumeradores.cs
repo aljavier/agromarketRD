@@ -10,9 +10,10 @@ namespace AgroMarketRD.Core.Enums
     {
         public enum Errores
         {
+            AG000 = 3,
             AG001 = 1,
             AG002 = 2,
-            AG000 = 3
+            AG003 = 4
         }
     }
 }
