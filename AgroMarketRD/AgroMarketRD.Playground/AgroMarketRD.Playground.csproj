@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6CB50C72-6E6D-4AEB-8C5A-178C96CD57FA}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4F0AB6BE-F4CE-443E-8A47-324843B9458D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgroMarketRD.Core</RootNamespace>
-    <AssemblyName>AgroMarketRD.Core</AssemblyName>
+    <RootNamespace>AgroMarketRD.Playground</RootNamespace>
+    <AssemblyName>AgroMarketRD.Playground</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,19 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,28 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgroMarketDbContext.cs" />
-    <Compile Include="Entities\AccesoLog.cs" />
-    <Compile Include="Entities\Cuenta.cs" />
-    <Compile Include="Entities\Error.cs" />
-    <Compile Include="Entities\ErrorLog.cs" />
-    <Compile Include="Entities\Firma.cs" />
-    <Compile Include="Entities\IntencionCompra.cs" />
-    <Compile Include="Entities\IntencionVenta.cs" />
-    <Compile Include="Entities\Oferta.cs" />
-    <Compile Include="Entities\Producto.cs" />
-    <Compile Include="Entities\ProductoIntencionCompra.cs" />
-    <Compile Include="Entities\ProductoIntencionVenta.cs" />
-    <Compile Include="Entities\Usuario.cs" />
-    <Compile Include="Helpers\CryptoHelper.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Sesion.cs" />
-    <Compile Include="Entities\TipoUnidad.cs" />
-    <Compile Include="Entities\TipoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgroMarketRD.Core\AgroMarketRD.Core.csproj">
+      <Project>{6cb50c72-6e6d-4aeb-8c5a-178c96cd57fa}</Project>
+      <Name>AgroMarketRD.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
