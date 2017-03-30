@@ -40,7 +40,8 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
     1. Puede comprar más de uno a la vez.
 
 **Otros**:
-* Ver listado productos disponibles.
+* ~~Ver listado productos disponibles~~.
+* ~~Ver pfertas de productores disponibles~~.
 * Filtrar listado productos disponibles.
 
 
@@ -49,47 +50,5 @@ Puede ser que algo se nos este pasando, si es así, por favor ayudar [abriendo u
 Además falta la lógica de negocios de todos los métodos.
 
 Por favor, cualquier solicitud, sugerencia o inquietud exponerla aquí en el repositorio, [abrir un issue](https://github.com/aljavier/agromarketRD/issues).
-
-### Métodos a crear **(proposal)** ###
-
-**GetDeal**:       Retorna las intenciones de compras pendientes de concretarse del comprador/productor.
-* IntentionId
-* Comment
-* Buyer
-* BuyerId
-* ProductorId
-* Productor
-  
-**SignDeal**:       Firma una compra/venta de parte de comprador/productor. Ambos deben firmarla (a.k.a llamar este método).
-* IntentionId
-* BuyerId
-* Buyer
-* productorId
-* Productor
-* Date
-
-**GetAlerts**:      Retorna el estado de compra/venta pendientes de concretarses (de llamar SignDeal) de un comprador/productor.
-* IntentionId
-* Comment
-* Signers
-* ProductorId
-* Productor
-* Pending 
-* BuyerId
-* Buyer
-* Pending 
- 
-**GetFinalizedDeals**:   Retorna las compras/ventas finalizadas (a.k.a firmadas) de un comprador/productor.
-* IntentionId
-* OfferId
-* Comment
-* BuyerId
-* Buyer
-* ProductorId
-* Productor
-* Quantity
-* TotalAmount
-
-***Esto podría cambiar a la hora de hacerse.***
 
 **Nota:** *Sabemos que estamos cortos de tiempo y todos tenemos mil y una cosa que hacer, intentaremos tener ese listo cuanto antes. Aunque no puedo comprometerme para hoy mismo*.
