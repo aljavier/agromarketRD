@@ -11,6 +11,11 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
 
 ## TO DO ##
 
+**PRIORIDAD**
+* Intencion de compra debe permitir mas de un producto. (cambiar)
+* Intencion de directa a intencion de compra. 
+
+
 Queda por crear al menos dos métodos (además de los de auditoría): un método que retorna a un comprador/productor quienes han ofertado algo a su demanda y un médoto de culminación del trato que ambas partes deben hacer.
 
 Sería algo así:
