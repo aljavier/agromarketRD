@@ -45,11 +45,11 @@ namespace AgroMarket.Service
         /// <summary>
         /// Get unit types
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <returns>Unit types response</returns>
         [OperationContract]
-        ProductUnitResponse GetUnitTypes(string userId, string token);
+        ProductUnitResponse GetUnitTypes(string userName, string token);
 
         /// <summary>
         /// Create offer

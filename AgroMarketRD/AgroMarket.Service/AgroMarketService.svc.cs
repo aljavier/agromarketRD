@@ -182,12 +182,44 @@ namespace AgroMarket.Service
         /// <summary>
         /// Tipo de unidades de los productos. e.g. libras, sacos, etc.
         /// </summary>
-        /// <param name="userId">Usuario id</param>
+        /// <param name="userName">Usuario id</param>
         /// <param name="token">Token de acceso</param>
         /// <returns>Los diferentes tipo de unidades de los productos del catalogo</returns>
-        public ProductUnitResponse GetUnitTypes(string userId, string token)
+        public ProductUnitResponse GetUnitTypes(string userName, string token)
         {
-            return new ProductUnitResponse();
+            ProductUnitResponse response = new ProductUnitResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    response.UnitTypes = db.TipoUnidad.Select(x => new ProductUnit
+                    {
+                        Id = x.Id,
+                        Description = x.Descripcion
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+            }
+
+            return response;
         }
 
         /// <summary>
