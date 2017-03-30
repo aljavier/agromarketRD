@@ -67,12 +67,12 @@ namespace AgroMarket.Service
         /// <summary>
         /// Remove an offer
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <param name="offerId">offer id</param>
         /// <returns>Remove an offer</returns>
         [OperationContract]
-        ErrorResponse RemoveOffer(string userId, string token, int offerId);
+        ErrorResponse RemoveOffer(string userName, string token, int offerId);
 
         /// <summary>
         /// Get offer productor

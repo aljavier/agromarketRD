@@ -92,7 +92,7 @@ namespace AgroMarket.Service
                 response.Error.Code = Errores.AG002.ToString();
                 response.Error.Description = ex.Message;
 
-                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
 
             return response;
@@ -132,7 +132,7 @@ namespace AgroMarket.Service
                 response.Code = Errores.AG002.ToString();
                 response.Description = ex.Message;
 
-                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
 
             return response;
@@ -174,7 +174,7 @@ namespace AgroMarket.Service
                 response.Error.Code = Errores.AG002.ToString();
                 response.Error.Description = ex.Message;
 
-                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
             return response;
         }
@@ -216,7 +216,7 @@ namespace AgroMarket.Service
                 response.Error.Code = Errores.AG002.ToString();
                 response.Error.Description = ex.Message;
 
-                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
 
             return response;
@@ -277,7 +277,7 @@ namespace AgroMarket.Service
                 response.Error.Code = Errores.AG002.ToString();
                 response.Error.Description = ex.Message;
 
-                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
 
             return response;
@@ -286,13 +286,59 @@ namespace AgroMarket.Service
         /// <summary>
         /// Borra una oferta, solo puede hacerse si es el propietario de la oferta.
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <param name="offerId">oferta id</param>
         /// <returns></returns>
-        public ErrorResponse RemoveOffer(string userId, string token, int offerId)
+        public ErrorResponse RemoveOffer(string userName, string token, int offerId)
         {
-            throw new NotImplementedException();
+            ErrorResponse response = new ErrorResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Code = Errores.AG003.ToString();
+                    response.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _user = db.Usuarios.First(x => x.NombreUsuario == userName);
+
+                    if (_user.TipoUsuarioId != 2) // Solo usuarios Productor. TODO: Quitar magic number
+                    {
+                        response.Code = Errores.AG004.ToString();
+                        response.Description = "No es un productor!";
+
+                        return response;
+                    }
+
+                    var _offer = db.Ofertas.FirstOrDefault(x => x.Id == offerId 
+                                    && x.UsuarioId == _user.Id);
+
+                    if (_offer != null)
+                    {
+                        _offer.Activo = false;
+                        db.Entry(_offer).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    } // TODO: Devolver mensaje descriptivo de que no es valida la oferta
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Code = Errores.AG002.ToString();
+                response.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
         }
 
         /// <summary>
