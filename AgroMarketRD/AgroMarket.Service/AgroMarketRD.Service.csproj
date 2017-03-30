@@ -42,6 +42,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\AgroMarketRD.Core\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -105,6 +106,7 @@
     <Compile Include="Contracts\ProductResponse.cs" />
     <Compile Include="Contracts\ProductUnitResponse.cs" />
     <Compile Include="Contracts\RequestResponse.cs" />
+    <Compile Include="Helpers\AccessHelper.cs" />
     <Compile Include="IAgroMarketService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

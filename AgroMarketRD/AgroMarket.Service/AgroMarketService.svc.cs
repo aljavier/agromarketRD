@@ -7,6 +7,10 @@ using System.ServiceModel.Web;
 using System.Text;
 using AgroMarketRD.Service.Contracts;
 using AgroMarketRD.Core.Entities;
+using AgroMarketRD.Core.Helpers;
+using AgroMarketRD.Core;
+using static AgroMarketRD.Core.Enums.Enumeradores;
+using AgroMarketRD.Service.Helpers;
 
 namespace AgroMarket.Service
 {
@@ -23,8 +27,45 @@ namespace AgroMarket.Service
         /// <returns>Token de acceso y id del usuario si fue exitoso.</returns>
         public LoginResponse SignIn(string userName, string password)
         {
-            return new LoginResponse { Token = Guid.NewGuid().ToString(),
-                Error = new ErrorResponse { Code = "AG000", Description = "OK" } };
+            LoginResponse response = new LoginResponse();
+
+            try
+            {
+                AccessHelper.Add(0, OperationContext.Current);
+
+                using (AgroMarketDbContext db = new AgroMarketDbContext())
+                {
+                    string _passwd = CryptoHelper.Decrypt(password);
+
+                    var _login = db.Usuarios.FirstOrDefault(x => x.NombreUsuario == userName 
+                                                                && x.Contrasena == _passwd);
+
+                    if (_login != null)
+                    {
+                        var _error = db.Errores.Find(Errores.AUTH_FAIL);
+
+                        response = new LoginResponse {
+                            Error = new ErrorResponse {
+                                Code = _error.Codigo,
+                                Description = _error.Descripcion
+                            },
+                            Token = string.Empty,
+                            UserId = 0
+                        };
+
+                        db.Sesiones.
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Error.Code = Errores.ERROR_NO_CONTROLADO.ToString(); 
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+            }
+
+            return response;
         }
 
         /// <summary>

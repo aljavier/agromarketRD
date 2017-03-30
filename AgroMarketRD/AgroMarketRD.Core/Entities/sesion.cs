@@ -20,7 +20,8 @@ namespace AgroMarketRD.Core.Entities
         public string Token { get; set; }
         [Column("fecha_expiracion")]
         public DateTime FechaExpiracion { get; set; }
-
+        [Column("activo")]
+        public bool Activo { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

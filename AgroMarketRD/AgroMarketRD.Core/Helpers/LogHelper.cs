@@ -79,7 +79,7 @@ namespace AgroMarketRD.Core.Helpers
         /// <param name="usuarioId">Usuario ID</param>
         /// <param name="solicitud">Solicitud ID</param>
         /// <param name="endpoint">Endpoint</param>
-        public void AddAccesoLog(int usuarioId, string solicitud, string endpoint)
+        public static void AddAccesoLog(int usuarioId, string solicitud, string endpoint)
         {
             try
             {
