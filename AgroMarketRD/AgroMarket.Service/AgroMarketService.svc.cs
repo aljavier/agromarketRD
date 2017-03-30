@@ -398,24 +398,48 @@ namespace AgroMarket.Service
         /// <summary>
         /// Obtiene todas las ofertas de un productor
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user name</param>
         /// <param name="token">token</param>
-        /// <param name="productorId">productor id</param>
         /// <returns>Todas las ofertas del productor</returns>
-        public OfferResponse GetOffersProductor(string userId, string token, int productorId)
+        public OfferResponse GetAllOffers(string userName, string token)
         {
-            throw new NotImplementedException();
-        }
+            OfferResponse response = new OfferResponse();
 
-        /// <summary>
-        /// Obtiene todas las ofertas, de todos los productores
-        /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <returns>Todas las ofertas disponibles en el mercado</returns>
-        public OfferResponse GetAllOffers(string userId, string token)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    response.Offers = db.Ofertas.Select(x => new Offer {
+                        PriceUnit = x.PrecioUnidad,
+                        ProductCode = x.Producto.Codigo,
+                        ProductName = x.Producto.Descripcion,
+                        Quantity = x.Cantidad,
+                        ProductUnitId = x.TipoUnidadId,
+                        ProductUnit = x.TipoUnidad.Descripcion,
+                        ProductorId = x.ProductoId,
+                        Productor = x.Usuario.Nombre
+                    }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+            return response;
         }
 
         /// <summary>
