@@ -344,13 +344,55 @@ namespace AgroMarket.Service
         /// <summary>
         /// Obtiene una oferta por el id
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <param name="offerId">offer id</param>
         /// <returns>Oferta solicitada si existe</returns>
-        public OfferResponse GetOffer(string userId, string token, int offerId)
+        public OfferResponse GetOffer(string userName, string token, int offerId)
         {
-            throw new NotImplementedException();
+            OfferResponse response = new OfferResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _offer = db.Ofertas.FirstOrDefault(x => x.Id == offerId && x.Activo); // Solo activas
+
+                    if (_offer != null)
+                    {
+                        response.Offers.Add(new Offer {
+                            PriceUnit = _offer.PrecioUnidad,
+                            ProductCode = _offer.Producto.Codigo,
+                            ProductName = _offer.Producto.Descripcion,
+                            Quantity = _offer.Cantidad,
+                            ProductUnitId = _offer.TipoUnidadId,
+                            ProductUnit = _offer.TipoUnidad.Descripcion,
+                            ProductorId = _offer.ProductoId,
+                            Productor = _offer.Usuario.Nombre
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
         }
 
         /// <summary>

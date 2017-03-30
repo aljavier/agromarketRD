@@ -9,7 +9,13 @@ namespace AgroMarketRD.Service.Contracts
     [DataContract]
     public class OfferResponse : BaseAgroContract
     {
+        [DataMember]
         public List<Offer> Offers { get; set; }
+
+        public OfferResponse()
+        {
+            Offers = new List<Offer>();
+        }
     }
 
     [DataContract]
@@ -17,16 +23,20 @@ namespace AgroMarketRD.Service.Contracts
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public int ProductId { get; set; }
+        public string ProductCode { get; set; }
+        [DataMember]
+        public string ProductName { get; set; }
         [DataMember]
         public int ProductUnitId { get; set; }
         [DataMember]
-        public int UserId { get; set; }
+        public string ProductUnit { get; set; }
+        [DataMember]
+        public int ProductorId { get; set; }
+        [DataMember]
+        public string Productor { get; set; }
         [DataMember]
         public int Quantity { get; set; }
         [DataMember]
         public decimal PriceUnit { get; set; }
-        [DataMember]
-        public decimal TotalAmount { get; set; }
     }
 }

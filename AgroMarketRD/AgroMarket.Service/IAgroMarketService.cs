@@ -77,12 +77,12 @@ namespace AgroMarket.Service
         /// <summary>
         /// Get offer productor
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <param name="offerId">offer id</param>
         /// <returns>An offer of the productor</returns>
         [OperationContract]
-        OfferResponse GetOffer(string userId, string token, int offerId);
+        OfferResponse GetOffer(string userName, string token, int offerId);
 
         /// <summary>
         /// Get all offers from a productor
