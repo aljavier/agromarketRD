@@ -11,6 +11,7 @@ using AgroMarketRD.Core.Helpers;
 using AgroMarketRD.Core;
 using static AgroMarketRD.Core.Enums.Enumeradores;
 using AgroMarketRD.Service.Helpers;
+using System.Configuration;
 
 namespace AgroMarket.Service
 {
@@ -31,21 +32,26 @@ namespace AgroMarket.Service
 
             try
             {
-                AccessHelper.Add(0, OperationContext.Current);
+                #region "Sign in, logueo de acceso y limpieza de sesion"
+
+                AccessHelper.Add(userName, OperationContext.Current);
 
                 using (AgroMarketDbContext db = new AgroMarketDbContext())
                 {
-                    string _passwd = CryptoHelper.Decrypt(password);
+                    string _passwd = CryptoHelper.Encrypt(password);
 
-                    var _login = db.Usuarios.FirstOrDefault(x => x.NombreUsuario == userName 
+                    var _login = db.Usuarios.FirstOrDefault(x => x.NombreUsuario == userName
                                                                 && x.Contrasena == _passwd);
 
                     if (_login != null)
                     {
-                        var _error = db.Errores.Find(Errores.AUTH_FAIL);
+                        int _id = Errores.AG000.GetHashCode();
+                        var _error = db.Errores.Where(x => x.Id == _id).First();
 
-                        response = new LoginResponse {
-                            Error = new ErrorResponse {
+                        response = new LoginResponse
+                        {
+                            Error = new ErrorResponse
+                            {
                                 Code = _error.Codigo,
                                 Description = _error.Descripcion
                             },
@@ -53,14 +59,78 @@ namespace AgroMarket.Service
                             UserId = 0
                         };
 
-                        db.Sesiones.
+                        var activeSessions = db.Sesiones.Where(x => x.UsuarioId == _login.Id && x.Activo).ToList();
+
+                        if (activeSessions.Count > 0)
+                        {
+                            activeSessions.ForEach(x => x.Activo = false);
+                        }
+
+                        int _days = Convert.ToInt16(ConfigurationManager.AppSettings["DaysToExpireSession"]);
+                        string _token = Guid.NewGuid().ToString();
+
+                        db.Sesiones.Add(
+                            new Sesion
+                            {
+                                UsuarioId = _login.Id,
+                                Token = _token,
+                                FechaExpiracion = DateTime.Now.AddDays(_days),
+                                Activo = true
+                            });
+                        db.SaveChanges();
+
+                        response.Token = _token;
+                        response.UserId = _login.Id;
+                        response.UserName = _login.NombreUsuario;
+                        response.Error.Code = Errores.AG000.ToString();
                     }
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Cierra la sesón de un usuario.
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">Token</param>
+        /// <returns>Log off success or not</returns>
+        public ErrorResponse LogOff(string userName, string token)
+        {
+            ErrorResponse response = new ErrorResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                using (AgroMarketDbContext db = new AgroMarketDbContext())
+                {
+                    var user = db.Usuarios.FirstOrDefault(x => x.NombreUsuario == userName);
+
+                    if (user != null)
+                    {
+                        if (db.Sesiones.Any(x => x.UsuarioId == user.Id && x.Activo)) // Lo hacemos asi porque el Any es muy eficiente
+                        {
+                            var _sessions = db.Sesiones.Where(x => x.Id == x.Id && x.Activo).ToList();
+                            _sessions.ForEach(x => x.Activo = false);
+                            db.SaveChanges();
+                        }
+                    } // TODO: Mensaje personalizado de usuario no valido (?)
                 }
             }
             catch (Exception ex)
             {
-                response.Error.Code = Errores.ERROR_NO_CONTROLADO.ToString(); 
-                response.Error.Description = ex.Message;
+                response.Code = Errores.AG002.ToString();
+                response.Description = ex.Message;
 
                 LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), null);
             }

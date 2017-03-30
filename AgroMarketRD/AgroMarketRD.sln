@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroMarketRD.Service", "AgroMarket.Service\AgroMarketRD.Service.csproj", "{076A390E-A95B-425B-8D7F-ACE1132C614A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgroMarketRD.Playground", "AgroMarketRD.Playground\AgroMarketRD.Playground.csproj", "{4F0AB6BE-F4CE-443E-8A47-324843B9458D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{076A390E-A95B-425B-8D7F-ACE1132C614A} = {076A390E-A95B-425B-8D7F-ACE1132C614A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

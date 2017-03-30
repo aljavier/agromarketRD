@@ -20,8 +20,8 @@ namespace AgroMarketRD.Core.Entities
         [Column("stacktrace", TypeName = "text")]
         public string StackTrace { get; set; }
 
-        [Column("usuario_id")]
-        public int? UsuarioId { get; set; }
+        [Column("usuario")]
+        public string Usuario { get; set; }
 
         [Key]
         [Column("fecha_creacion", Order = 1)]

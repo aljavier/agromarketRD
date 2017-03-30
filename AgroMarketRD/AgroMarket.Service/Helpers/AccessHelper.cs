@@ -15,18 +15,18 @@ namespace AgroMarketRD.Service.Helpers
         /// <summary>
         /// Envia a la db un acceso.
         /// </summary>
-        /// <param name="userId">User ID</param>
+        /// <param name="userName">User ID</param>
         /// <param name="context">Context</param>
-        public static void Add(int userId, OperationContext context)
+        public static void Add(string userName, OperationContext context)
         {
             try
             {
-                LogHelper.AddAccesoLog(userId, context.IncomingMessageHeaders.ToString(), 
+                LogHelper.AddAccesoLog(userName, context.IncomingMessageHeaders.ToString(), 
                     context.EndpointDispatcher.EndpointAddress.ToString());
             }
             catch (Exception ex)
             {
-                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userId);
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
         }
     }

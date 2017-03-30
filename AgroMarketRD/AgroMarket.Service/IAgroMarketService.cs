@@ -25,6 +25,15 @@ namespace AgroMarket.Service
         LoginResponse SignIn(string userName, string password);
 
         /// <summary>
+        /// Log ogg
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">Token</param>
+        /// <returns>Log off success or not</returns>
+        [OperationContract]
+        ErrorResponse LogOff(string userName, string token);
+
+        /// <summary>
         /// Get products
         /// </summary>
         /// <param name="userId">user id</param>

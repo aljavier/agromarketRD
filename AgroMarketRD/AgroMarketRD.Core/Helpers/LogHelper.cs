@@ -25,8 +25,8 @@ namespace AgroMarketRD.Core.Helpers
         /// <param name="mensaje">Mensaje</param>
         /// <param name="excepcion">Excepcionr</param>
         /// <param name="stacktrace">StackTrace</param>
-        /// <param name="usuarioId">Usuario ID</param>
-        public static void AddLog(string mensaje, string excepcion, string stacktrace, int? usuarioId)
+        /// <param name="usuario">Usuario ID</param>
+        public static void AddLog(string mensaje, string excepcion, string stacktrace, string usuario)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace AgroMarketRD.Core.Helpers
                         Mensaje = mensaje,
                         Excepcion = excepcion,
                         StackTrace = stacktrace,
-                        UsuarioId = usuarioId,
+                        Usuario = usuario,
                         FechaCreacion = DateTime.Now
                     });
 
@@ -57,7 +57,7 @@ namespace AgroMarketRD.Core.Helpers
                     _mensaje.AppendLine($"Mensaje: {mensaje}")
                         .AppendFormat($"Excepcion: {excepcion}")
                         .AppendFormat($"StackTrace: {stacktrace}")
-                        .Append($"Usuario ID: {usuarioId}")
+                        .Append($"Usuario ID: {usuario}")
                         .AppendLine() // Linea en blanco intencional
                         .AppendLine() // Linea en blanco intencional
                         .AppendFormat($"StackTrace: {stacktrace}");
@@ -76,10 +76,10 @@ namespace AgroMarketRD.Core.Helpers
         /// <summary>
         /// Guarda el log de acceso de un usuario.
         /// </summary>
-        /// <param name="usuarioId">Usuario ID</param>
+        /// <param name="userName">Usuario ID</param>
         /// <param name="solicitud">Solicitud ID</param>
         /// <param name="endpoint">Endpoint</param>
-        public static void AddAccesoLog(int usuarioId, string solicitud, string endpoint)
+        public static void AddAccesoLog(string userName, string solicitud, string endpoint)
         {
             try
             {
@@ -90,13 +90,14 @@ namespace AgroMarketRD.Core.Helpers
                             Solicitud = solicitud,
                             Endpoint = endpoint,
                             FechaCreacion = DateTime.Now,
-                            UsuarioId = usuarioId
+                            Usuario = userName
                         });
+                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), usuarioId);
+                AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
         }
 

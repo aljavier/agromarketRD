@@ -6,12 +6,13 @@ namespace AgroMarketRD.Core.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("acceso_log")]
     public partial class AccesoLog
     {
         [Key]
-        [Column("usuario_id", Order = 0)]
+        [Column("usuario", Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UsuarioId { get; set; }
+        public string Usuario { get; set; }
 
         [Key]
         [Column("solicitud", Order = 1)]

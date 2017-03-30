@@ -10,8 +10,9 @@ namespace AgroMarketRD.Core.Enums
     {
         public enum Errores
         {
-            AUTH_FAIL = 1,
-            ERROR_NO_CONTROLADO = 2
+            AG001 = 1,
+            AG002 = 2,
+            AG000 = 3
         }
     }
 }

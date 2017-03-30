@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,15 +47,72 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AgroMarketWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.ErrorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.GeneralResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.OfferResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.ProductResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.RequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService.wsdl" />
+    <None Include="Service References\AgroMarketWS\AgroMarketService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgroMarketRD.Core\AgroMarketRD.Core.csproj">
       <Project>{6cb50c72-6e6d-4aeb-8c5a-178c96cd57fa}</Project>
       <Name>AgroMarketRD.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AgroMarketWS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AgroMarketWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AgroMarketWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AgroMarketWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

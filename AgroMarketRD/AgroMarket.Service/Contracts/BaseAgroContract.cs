@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using static AgroMarketRD.Core.Enums.Enumeradores;
 
 namespace AgroMarketRD.Service.Contracts
 {
@@ -14,7 +15,7 @@ namespace AgroMarketRD.Service.Contracts
 
         public BaseAgroContract()
         {
-            Error = new ErrorResponse { Code = "AG000", Description = "Respuesta exitosa!" };
+            Error = new ErrorResponse { Code = Errores.AG000.ToString(), Description = "Respuesta exitosa!" };
         }
     }
 
@@ -24,5 +25,11 @@ namespace AgroMarketRD.Service.Contracts
         public string Code { get; set; }
         [DataMember]
         public string Description { get; set; }
+
+        public ErrorResponse()
+        {
+            Code = Errores.AG000.ToString();
+            Description = "Respuesta exitosa!";
+        }
     }
 }

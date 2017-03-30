@@ -12,6 +12,8 @@ namespace AgroMarketRD.Service.Contracts
         [DataMember]
         public int UserId { get; set; }
         [DataMember]
+        public string UserName { get; set; }
+        [DataMember]
         public string Token { get; set; }
     }
 }
