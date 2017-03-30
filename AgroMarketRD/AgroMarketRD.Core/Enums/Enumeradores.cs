@@ -11,11 +11,11 @@ namespace AgroMarketRD.Core.Enums
         public enum Errores
         {
             // TODO: Los errores deberian tener nombres auto descriptivos, sacar el codigo de la db por el numero
-            AG000 = 3,
-            AG001 = 1,
-            AG002 = 2,
-            AG003 = 4,
-            AG004 = 5
+            AG000 = 3, // Success
+            AG001 = 1, // Auth failed
+            AG002 = 2, // No Controlado
+            AG003 = 4, // Session no valida
+            AG004 = 5 // Controlado
         }
     }
 }

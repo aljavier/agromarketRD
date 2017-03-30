@@ -12,6 +12,7 @@ using AgroMarketRD.Core;
 using static AgroMarketRD.Core.Enums.Enumeradores;
 using AgroMarketRD.Service.Helpers;
 using System.Configuration;
+using AgroMarketRD.Service.Requests;
 
 namespace AgroMarket.Service
 {
@@ -443,16 +444,180 @@ namespace AgroMarket.Service
         }
 
         /// <summary>
-        /// Crea una solicitud de un producto
+        /// Crea una intencion de compra desde productos.
         /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <param name="productId">productor id</param>
-        /// <param name="quantity">quantity</param>
         /// <returns>Id del request creado</returns>
-        public GeneralResponse CreateRequest(string userId, string token, int productId, int quantity)
+        public GeneralResponse CreateIntentionToBuy(IntentionToBuyFromProducts request)
         {
-            throw new NotImplementedException();
+            GeneralResponse response = new GeneralResponse();
+
+            try
+            {
+                AccessHelper.Add(request.userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(request.userName, request.token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _user = db.Usuarios.First(x => x.NombreUsuario == request.userName);
+
+                    if (_user.TipoUsuarioId != 1) // Solo usuarios Compradores. TODO: Quitar magic number
+                    {
+                        response.Error.Code = Errores.AG004.ToString();
+                        response.Error.Description = "No es un comprador!";
+
+                        return response;
+                    }
+
+                    if (request.ProductList.Count == 0)
+                    {
+                        response.Error.Code = Errores.AG004.ToString();
+                        response.Error.Description = "Tiene que enviar productos, socio!"; // TODO: Tomar de db, etc.
+
+                        return response;
+                    }
+
+                    var _intention = new IntencionCompra
+                    {
+                        Activo = true,
+                        FechaCreacion = DateTime.Now,
+                        FechaExpiracion = DateTime.Now.AddDays(30), // TODO: Quitar magic number
+                        UsuarioId = _user.Id
+                    };
+
+                    db.IntencionCompra.Add(_intention);
+
+                    db.SaveChanges();
+
+                    response.Id = _intention.Id;
+
+                    #region "agregar productos a la intencion de compra"
+
+                    foreach (var prod in request.ProductList)
+                    {
+                        db.ProductoIntencionCompra.Add(new ProductoIntencionCompra {
+                            cantidad = prod.Quantity,
+                            IntencionCompraId = _intention.Id,
+                            PrecioUnidad = prod.PriceUnit,
+                            TipoUnidadId = prod.ProductUnit,
+                            ProductoId = db.Productos.First(x => x.Codigo == prod.ProductCode).Id // TODO: Validar existencias de productos, manejar errores acorde
+                        });
+                    }
+                    db.SaveChanges();
+                    #endregion
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), request.userName);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Crea una intencion de compra a partir de una o mas ofertas del mercado
+        /// </summary>
+        /// <param name="request">request</param>
+        /// <returns>Create request response</returns>
+        public GeneralResponse CreateIntentionToBuyFromOffers(IntentionToBuyFromOffers request)
+        {
+            GeneralResponse response = new GeneralResponse();
+
+            try
+            {
+                AccessHelper.Add(request.userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(request.userName, request.token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _user = db.Usuarios.First(x => x.NombreUsuario == request.userName);
+
+                    if (_user.TipoUsuarioId != 1) // Solo usuarios Compradores. TODO: Quitar magic number
+                    {
+                        response.Error.Code = Errores.AG004.ToString();
+                        response.Error.Description = "No es un comprador!";
+
+                        return response;
+                    }
+
+                    if (request.OffersId.Count == 0)
+                    {
+                        response.Error.Code = Errores.AG004.ToString();
+                        response.Error.Description = "Tiene que enviar las ofertas, socio!"; // TODO: Tomar de db, etc.
+
+                        return response;
+                    }
+
+                    var _intention = new IntencionCompra
+                    {
+                        Activo = true,
+                        FechaCreacion = DateTime.Now,
+                        FechaExpiracion = DateTime.Now.AddDays(30), // TODO: Quitar magic number
+                        UsuarioId = _user.Id
+                    };
+
+                    db.IntencionCompra.Add(_intention);
+
+                    db.SaveChanges();
+
+                    response.Id = _intention.Id;
+
+                    #region "agregar productos a la intencion de compra"
+
+                    foreach (var offerId in request.OffersId)
+                    {
+                        var _offer = db.Ofertas.FirstOrDefault(x => x.Id == offerId);
+
+                        if (_offer == null)
+                        {
+                            // TODO: Manejar casos de ofertas no existentes enviadas
+                            continue;
+                        }
+
+                        db.ProductoIntencionCompra.Add(new ProductoIntencionCompra
+                        {
+                            cantidad = _offer.Cantidad,
+                            IntencionCompraId = _intention.Id,
+                            PrecioUnidad = _offer.PrecioUnidad,
+                            TipoUnidadId = _offer.TipoUnidadId,
+                            ProductoId = _offer.ProductoId // TODO: Validar existencias de productos, manejar errores acorde
+                        });
+                    }
+                    db.SaveChanges();
+                    #endregion
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), request.userName);
+            }
+
+            return response;
         }
 
         /// <summary>
@@ -462,9 +627,47 @@ namespace AgroMarket.Service
         /// <param name="token">token</param>
         /// <param name="requestId">rquest id</param>
         /// <returns>Error de exitosos o fallido</returns>
-        public ErrorResponse RemoveRequest(string userId, string token, int requestId)
+        public ErrorResponse RemoveIntentionToBuy(string userName, string token, int intentionId)
         {
-            throw new NotImplementedException();
+            ErrorResponse response = new ErrorResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Code = Errores.AG003.ToString();
+                    response.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _user = db.Usuarios.First(x => x.NombreUsuario == userName);
+
+                    var _intention = db.IntencionCompra.FirstOrDefault(x => x.Id == intentionId && x.UsuarioId == _user.Id);
+
+                    if (_intention != null)
+                    {
+                        _intention.Activo = false;
+                        db.Entry(_intention).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }// TODO: Devolver error acorde
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Code = Errores.AG002.ToString();
+                response.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
         }
 
         /// <summary>
@@ -475,18 +678,6 @@ namespace AgroMarket.Service
         /// <param name="requestId">request id</param>
         /// <returns>Solicitud del id si existe</returns>
         public RequestResponse GetRequest(string userId, string token, int requestId)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Obtiene todas las solicitudes de un vendedor
-        /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <param name="buyerId">buyer id</param>
-        /// <returns>Todas las solicitudes del vendedor</returns>
-        public RequestResponse GetRequestsBuyer(string userId, string token, int buyerId)
         {
             throw new NotImplementedException();
         }

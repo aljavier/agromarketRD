@@ -1,4 +1,5 @@
 ﻿using AgroMarketRD.Service.Contracts;
+using AgroMarketRD.Service.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,23 +97,28 @@ namespace AgroMarket.Service
         /// <summary>
         /// Create a request of a product
         /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <param name="productId">product id</param>
-        /// <param name="quantity">quantity</param>
+        /// <param name="request">request</param>
         /// <returns>Create request response</returns>
         [OperationContract]
-        GeneralResponse CreateRequest(string userId, string token, int productId, int quantity);
+        GeneralResponse CreateIntentionToBuy(IntentionToBuyFromProducts request);
+
+        /// <summary>
+        /// Create a request of a product
+        /// </summary>
+        /// <param name="request">request</param>
+        /// <returns>Create request response</returns>
+        [OperationContract]
+        GeneralResponse CreateIntentionToBuyFromOffers(IntentionToBuyFromOffers request);
 
         /// <summary>
         /// Remove a request
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
-        /// <param name="requestId">request id</param>
+        /// <param name="intentionId">request id</param>
         /// <returns>Remove request response</returns>
         [OperationContract]
-        ErrorResponse RemoveRequest(string userId, string token, int requestId);
+        ErrorResponse RemoveIntentionToBuy(string userName, string token, int intentionId);
 
         /// <summary>
         /// Get a request
@@ -123,16 +129,6 @@ namespace AgroMarket.Service
         /// <returns>Request response</returns>
         [OperationContract]
         RequestResponse GetRequest(string userId, string token, int requestId);
-
-        /// <summary>
-        /// Get requests from buyer
-        /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <param name="buyerId">buyer id</param>
-        /// <returns>Requests from a buyer</returns>
-        [OperationContract]
-        RequestResponse GetRequestsBuyer(string userId, string token, int buyerId);
 
         /// <summary>
         /// Get all requests
