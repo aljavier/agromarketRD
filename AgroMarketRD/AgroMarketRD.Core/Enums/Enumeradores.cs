@@ -10,6 +10,7 @@ namespace AgroMarketRD.Core.Enums
     {
         public enum Errores
         {
+            // TODO: Los errores deberian tener nombres auto descriptivos, sacar el codigo de la db por el numero
             AG000 = 3,
             AG001 = 1,
             AG002 = 2,

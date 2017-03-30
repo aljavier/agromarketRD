@@ -251,6 +251,14 @@ namespace AgroMarket.Service
 
                 using (var db = new AgroMarketDbContext())
                 {
+                    if (db.Usuarios.First(x => x.NombreUsuario == userName).TipoUsuarioId != 2) // Solo usuarios Productor. TODO: Quitar magic number
+                    {
+                        response.Error.Code = Errores.AG004.ToString();
+                        response.Error.Description = "No es un productor!";
+
+                        return response;
+                    }
+
                     db.Ofertas.Add(new Oferta {
                         Activo = true,
                         Cantidad = cantidad,

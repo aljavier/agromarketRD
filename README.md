@@ -18,7 +18,7 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
 ### ASAP - CASOS DE USOS ###
 
 **Productor**: 
-* Coloca productos en el mercado.
+* ~~Coloca productos en el mercado~~.
 * Ve intenciones de compra de compradores.
 * Ofrece productos a una intención de compra (crear intención de venta)
     1. Puede ofrecer más o menos de los que tiene en el mercado.
