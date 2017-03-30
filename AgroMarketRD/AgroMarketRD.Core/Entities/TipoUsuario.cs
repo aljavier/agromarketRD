@@ -12,16 +12,17 @@ namespace AgroMarketRD.Core.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoUsuario()
         {
-            usuarios = new HashSet<Usuario>();
+            Usuarios = new HashSet<Usuario>();
         }
-
-        public int id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(250)]
-        public string descripcion { get; set; }
+        [Column("descripcion")]
+        public string Descripcion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> usuarios { get; set; }
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

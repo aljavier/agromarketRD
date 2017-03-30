@@ -12,30 +12,31 @@ namespace AgroMarketRD.Core.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cuenta()
         {
-            usuarios = new HashSet<Usuario>();
+            Usuarios = new HashSet<Usuario>();
         }
+        [Column("id")]
+        public int Id { get; set; }
 
-        public int id { get; set; }
+        [Column("monto", TypeName = "numeric")]
+        public decimal Monto { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal monto { get; set; }
+        [Column("limite_credito", TypeName = "numeric")]
+        public decimal LimiteCredito { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal limite_credito { get; set; }
+        [Column("total_consumido", TypeName = "numeric")]
+        public decimal TotalConsumido { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal total_consumido { get; set; }
-
-        [Column(TypeName = "numeric")]
-        public decimal total_disponible { get; set; }
+        [Column("total_disponible", TypeName = "numeric")]
+        public decimal TotalDisponible { get; set; }
 
         [Required]
         [StringLength(250)]
+        [Column("descripcion")]
         public string descripcion { get; set; }
-
-        public bool activo { get; set; }
+        [Column("activo")]
+        public bool Activo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> usuarios { get; set; }
+        public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

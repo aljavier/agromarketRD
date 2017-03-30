@@ -13,92 +13,67 @@ namespace AgroMarketRD.Core
         {
         }
 
-        public virtual DbSet<Cuenta> cuentas { get; set; }
-        public virtual DbSet<Demanda> demandas { get; set; }
-        public virtual DbSet<IntencionCompra> intencion_compra { get; set; }
-        public virtual DbSet<Oferta> ofertas { get; set; }
-        public virtual DbSet<Producto> productoes { get; set; }
-        public virtual DbSet<Sesion> sesions { get; set; }
-        public virtual DbSet<TipoUnidad> tipo_unidad { get; set; }
-        public virtual DbSet<TipoUsuario> tipo_usuario { get; set; }
-        public virtual DbSet<Usuario> usuarios { get; set; }
-        public virtual DbSet<Venta> ventas { get; set; }
-        public virtual DbSet<Error> errores { get; set; }
+        public virtual DbSet<Cuenta> Cuentas { get; set; }
+        public virtual DbSet<Oferta> Ofertas { get; set; }
+        public virtual DbSet<Producto> Productores { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Sesion> Sesiones { get; set; }
+        public virtual DbSet<TipoUnidad> TipoUnidad { get; set; }
+        public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public virtual DbSet<Error> Errores { get; set; }
+        public virtual DbSet<Firma> Firmas { get; set; }
+        public virtual DbSet<IntencionCompra> IntencionCompra { get; set; }
+        public virtual DbSet<IntencionVenta> IntencionVenta { get; set; }
+        public virtual DbSet<ProductoIntencionCompra> ProductoIntencionCompra { get; set; }
+        public virtual DbSet<ProductoIntencionVenta> ProductoIntencionVenta { get; set; }
+        public virtual DbSet<AccesoLog> AccesoLog { get; set; }
+        public virtual DbSet<ErrorLog> ErrorLog { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cuenta>()
-                .HasMany(e => e.usuarios)
-                .WithRequired(e => e.cuenta)
-                .HasForeignKey(e => e.cuenta_id);
-
-            modelBuilder.Entity<Demanda>()
-                .Property(e => e.activo)
-                .IsFixedLength();
-
-            modelBuilder.Entity<Demanda>()
-                .HasMany(e => e.intencion_compra)
-                .WithRequired(e => e.demanda)
-                .HasForeignKey(e => e.demanda_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<IntencionCompra>()
-                .HasMany(e => e.ventas)
-                .WithRequired(e => e.intencion_compra)
-                .HasForeignKey(e => e.intencion_compra_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Oferta>()
-                .HasMany(e => e.intencion_compra)
-                .WithRequired(e => e.oferta)
-                .HasForeignKey(e => e.oferta_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Producto>()
-                .HasMany(e => e.demandas)
-                .WithRequired(e => e.producto)
-                .HasForeignKey(e => e.producto_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Producto>()
-                .HasMany(e => e.ofertas)
-                .WithRequired(e => e.producto)
-                .HasForeignKey(e => e.producto_id)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.Usuarios)
+                .WithRequired(e => e.Cuenta)
+                .HasForeignKey(e => e.CuentaId);
 
             modelBuilder.Entity<TipoUnidad>()
-                .HasMany(e => e.demandas)
-                .WithRequired(e => e.tipo_unidad)
-                .HasForeignKey(e => e.tipo_unidad_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<TipoUnidad>()
-                .HasMany(e => e.ofertas)
-                .WithRequired(e => e.tipo_unidad)
-                .HasForeignKey(e => e.tipo_unidad_id)
+                .HasMany(e => e.Ofertas)
+                .WithRequired(e => e.TipoUnidad)
+                .HasForeignKey(e => e.TipoUnidadId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TipoUsuario>()
-                .HasMany(e => e.usuarios)
-                .WithRequired(e => e.tipo_usuario)
-                .HasForeignKey(e => e.tipo_usuario_id);
+                .HasMany(e => e.Usuarios)
+                .WithRequired(e => e.TipoUsuario)
+                .HasForeignKey(e => e.TipoUsuarioId);
 
-            modelBuilder.Entity<Usuario>()
-                .HasMany(e => e.demandas)
-                .WithRequired(e => e.usuario)
-                .HasForeignKey(e => e.usuario_id)
+            modelBuilder.Entity<Producto>()
+                .HasMany(e => e.Ofertas)
+                .WithRequired(e => e.Producto)
+                .HasForeignKey(e => e.ProductoId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Usuario>()
-                .HasMany(e => e.ofertas)
-                .WithRequired(e => e.usuario)
-                .HasForeignKey(e => e.usuario_id)
+                .HasMany(e => e.Ofertas)
+                .WithRequired(e => e.Usuario)
+                .HasForeignKey(e => e.UsuarioId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Usuario>()
-                .HasMany(e => e.sesions)
-                .WithRequired(e => e.usuario)
-                .HasForeignKey(e => e.usuario_id)
+            modelBuilder.Entity<IntencionCompra>()
+               .HasMany(e => e.IntencionesCompra)
+               .WithRequired(e => e.IntencionCompra)
+               .HasForeignKey(e => e.IntencionCompraId)
+               .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<IntencionVenta>()
+                .HasMany(e => e.ProductoIntencionVenta)
+                .WithRequired(e => e.IntencionVenta)
+                .HasForeignKey(e => e.IntencionVentaId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ErrorLog>()
+                .Property(e => e.StackTrace)
+                .IsUnicode(false);
         }
     }
 }

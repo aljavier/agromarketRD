@@ -6,15 +6,13 @@ namespace AgroMarketRD.Core.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("intencion_compra")]
-    public partial class IntencionCompra
+    public partial class IntencionVenta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public IntencionCompra()
+        public IntencionVenta()
         {
-            IntencionesCompra = new HashSet<ProductoIntencionCompra>();
+            ProductoIntencionVenta = new HashSet<ProductoIntencionVenta>();
         }
-
         [Column("id")]
         public int Id { get; set; }
         [Column("usuario_id")]
@@ -27,6 +25,6 @@ namespace AgroMarketRD.Core.Entities
         public bool Activo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductoIntencionCompra> IntencionesCompra { get; set; }
+        public virtual ICollection<ProductoIntencionVenta> ProductoIntencionVenta { get; set; }
     }
 }

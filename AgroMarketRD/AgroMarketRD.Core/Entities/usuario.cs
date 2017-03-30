@@ -12,47 +12,40 @@ namespace AgroMarketRD.Core.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            demandas = new HashSet<Demanda>();
-            ofertas = new HashSet<Oferta>();
-            sesions = new HashSet<Sesion>();
+            Ofertas = new HashSet<Oferta>();
         }
-
-        public int id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(150)]
-        public string nombre { get; set; }
+        [Column("nombre")]
+        public string Nombre { get; set; }
 
         [Required]
         [StringLength(20)]
-        public string rnc { get; set; }
+        [Column("rnc")]
+        public string RNC { get; set; }
 
         [Column("usuario")]
         [Required]
         [StringLength(50)]
-        public string usuario1 { get; set; }
+        public string NombreUsuario { get; set; }
 
         [Required]
         [StringLength(350)]
-        public string contrasena { get; set; }
-
-        public int cuenta_id { get; set; }
-
-        public int tipo_usuario_id { get; set; }
-
-        public bool? activo { get; set; }
-
-        public virtual Cuenta cuenta { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Demanda> demandas { get; set; }
+        [Column("contrasena")]
+        public string Contrasena { get; set; }
+        [Column("cuenta_id")]
+        public int CuentaId { get; set; }
+        [Column("tipo_usuario_id")]
+        public int TipoUsuarioId { get; set; }
+        [Column("activo")]
+        public bool Activo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oferta> ofertas { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sesion> sesions { get; set; }
-
-        public virtual TipoUsuario tipo_usuario { get; set; }
+        public virtual ICollection<Oferta> Ofertas { get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
+        public virtual Cuenta Cuenta { get; set; }
     }
 }

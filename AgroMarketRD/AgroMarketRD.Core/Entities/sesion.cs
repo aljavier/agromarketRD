@@ -9,16 +9,18 @@ namespace AgroMarketRD.Core.Entities
     [Table("sesion")]
     public partial class Sesion
     {
-        public int id { get; set; }
-
-        public int usuario_id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
+        [Column("usuario_id")]
+        public int UsuarioId { get; set; }
 
         [Required]
         [StringLength(350)]
-        public string token { get; set; }
+        [Column("token")]
+        public string Token { get; set; }
+        [Column("fecha_expiracion")]
+        public DateTime FechaExpiracion { get; set; }
 
-        public DateTime fecha_expiracion { get; set; }
-
-        public virtual Usuario usuario { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

@@ -9,14 +9,17 @@ namespace AgroMarketRD.Core.Entities
     [Table("errores")]
     public partial class Error
     {
-        public int id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string codigo { get; set; }
+        [Column("codigo")]
+        public string Codigo { get; set; }
 
         [Required]
         [StringLength(250)]
-        public string descripcion { get; set; }
+        [Column("descripcion")]
+        public string Descripcion { get; set; }
     }
 }

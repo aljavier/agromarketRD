@@ -12,20 +12,17 @@ namespace AgroMarketRD.Core.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoUnidad()
         {
-            demandas = new HashSet<Demanda>();
-            ofertas = new HashSet<Oferta>();
+            Ofertas = new HashSet<Oferta>();
         }
-
-        public int id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(250)]
-        public string descripcion { get; set; }
+        [Column("descripcion")]
+        public string Descripcion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Demanda> demandas { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Oferta> ofertas { get; set; }
+        public virtual ICollection<Oferta> Ofertas { get; set; }
     }
 }
