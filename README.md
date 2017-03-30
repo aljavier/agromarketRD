@@ -15,16 +15,34 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
 * Intencion de compra debe permitir mas de un producto. (cambiar)
 * Intencion de venta directa a intencion de compra. 
 
+### ASAP - CASOS DE USOS ###
 
-Queda por crear al menos dos métodos (además de los de auditoría): un método que retorna a un comprador/productor quienes han ofertado algo a su demanda y un médoto de culminación del trato que ambas partes deben hacer.
+**Productor**: 
+* Coloca productos en el mercado.
+* Ve intenciones de compra de compradores.
+* Ofrece productos a una intención de compra (crear intención de venta)
+    1. Puede ofrecer más o menos de los que tiene en el mercado.
+    2. Puede ofrecer menos de los que requiera la intención de compra.
+    3. Puede poner precio especial a productos para una intención de compra.
 
-Sería algo así:
-1. **Un comprador tiene una demanda**: use el método de createRequest.
-2. **Un productor quiere hacer una oferta**: hace una oferta (createOffer) general, ahora decide hacerle esa oferta al comprador. La linkea con makeDeal por la offerId y el requestId.
-3. **Comprador quiere ver las ofertas a su demanda**: este es el metodo que nos falta hacer.
-4. **Comprador decide aceptar una oferta**: este sería otro método que nos faltaría. El comprador *firma* la compra.
-5. **Productor quiere saber si han aceptado su oferta**: otro método que nos faltaría. Entonces para concretar la oferta luego de llamar ese método el productor *firmaría* la oferta. 
-6. Ahí concluye la transacción y se desactiva la demanda. Asequible ahora sólo para consulta para ese productor/comprador y para auditoria en historico de ventas.
+**Comprador**:
+* Puede colocar intención de compra. Datos mínimos:
+    1. ID
+    2. Cliente
+    3. FechaCreacion
+    4. FechaExpiracion
+    5. ProductosAComprar (N productos)
+        1. ID
+        2. Nombre
+        3. Cantidad
+        4. Precio
+* Puede seleccionar productos colgados en el mercado 
+    1. Puede comprar más de uno a la vez.
+
+**Otros**:
+* Ver listado productos disponibles.
+* Filtrar listado productos disponibles.
+
 
 Puede ser que algo se nos este pasando, si es así, por favor ayudar [abriendo un issue](https://github.com/aljavier/agromarketRD/issues).
 
