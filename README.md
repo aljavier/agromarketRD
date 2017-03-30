@@ -26,7 +26,7 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
     3. Puede poner precio especial a productos para una intención de compra.
 
 **Comprador**:
-* Puede colocar intención de compra. Datos mínimos:
+* ~~Puede colocar intención de compra~~. Datos mínimos:
     1. ID
     2. Cliente
     3. FechaCreacion
@@ -36,8 +36,8 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
         2. Nombre
         3. Cantidad
         4. Precio
-* Puede seleccionar productos colgados en el mercado 
-    1. Puede comprar más de uno a la vez.
+* ~~Puede seleccionar productos colgados en el mercado ~~
+    ~~1. Puede comprar más de uno a la vez.~~
 
 **Otros**:
 * ~~Ver listado productos disponibles~~.
