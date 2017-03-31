@@ -44,47 +44,47 @@ namespace AgroMarket.Service
                     var _login = db.Usuarios.FirstOrDefault(x => x.NombreUsuario == userName
                                                                 && x.Contrasena == _passwd);
 
-                    if (_login != null)
+                    if (_login == null)
                     {
-                        int _id = Errores.AG000.GetHashCode();
-                        var _error = db.Errores.Where(x => x.Id == _id).First();
 
                         response = new LoginResponse
                         {
                             Error = new ErrorResponse
                             {
-                                Code = _error.Codigo,
-                                Description = _error.Descripcion
+                                Code = Errores.AG001.ToString(),
+                                Description = "Falló autentificación."
                             },
                             Token = string.Empty,
                             UserId = 0
                         };
 
-                        var activeSessions = db.Sesiones.Where(x => x.UsuarioId == _login.Id && x.Activo).ToList();
-
-                        if (activeSessions.Count > 0)
-                        {
-                            activeSessions.ForEach(x => x.Activo = false);
-                        }
-
-                        int _days = Convert.ToInt16(ConfigurationManager.AppSettings["DaysToExpireSession"]);
-                        string _token = Guid.NewGuid().ToString();
-
-                        db.Sesiones.Add(
-                            new Sesion
-                            {
-                                UsuarioId = _login.Id,
-                                Token = _token,
-                                FechaExpiracion = DateTime.Now.AddDays(_days),
-                                Activo = true
-                            });
-                        db.SaveChanges();
-
-                        response.Token = _token;
-                        response.UserId = _login.Id;
-                        response.UserName = _login.NombreUsuario;
-                        response.Error.Code = Errores.AG000.ToString();
+                        return response;
                     }
+
+                    var activeSessions = db.Sesiones.Where(x => x.UsuarioId == _login.Id && x.Activo).ToList();
+
+                    if (activeSessions.Count > 0)
+                    {
+                        activeSessions.ForEach(x => x.Activo = false);
+                    }
+
+                    int _days = Convert.ToInt16(ConfigurationManager.AppSettings["DaysToExpireSession"]);
+                    string _token = Guid.NewGuid().ToString();
+
+                    db.Sesiones.Add(
+                        new Sesion
+                        {
+                            UsuarioId = _login.Id,
+                            Token = _token,
+                            FechaExpiracion = DateTime.Now.AddDays(_days),
+                            Activo = true
+                        });
+                    db.SaveChanges();
+
+                    response.Token = _token;
+                    response.UserId = _login.Id;
+                    response.UserName = _login.NombreUsuario;
+                    response.Error.Code = Errores.AG000.ToString();
                 }
                 #endregion
             }
@@ -427,7 +427,7 @@ namespace AgroMarket.Service
 
                 using (var db = new AgroMarketDbContext())
                 {
-                    response.Offers = db.Ofertas.Select(x => new Offer
+                    response.Offers = db.Ofertas.Where(x => x.Activo).Select(x => new Offer
                     {
                         PriceUnit = x.PrecioUnidad,
                         ProductCode = x.Producto.Codigo,
@@ -704,7 +704,7 @@ namespace AgroMarket.Service
 
                 using (var db = new AgroMarketDbContext())
                 {
-                    var _intention = db.IntencionCompra.FirstOrDefault(x => x.Id == intentionId);
+                    var _intention = db.IntencionCompra.FirstOrDefault(x => x.Id == intentionId && x.Activo);
 
                     if (_intention != null)
                     {
@@ -714,7 +714,7 @@ namespace AgroMarket.Service
                             BuyerId = _intention.UsuarioId,
                             Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
                             DateCreation = _intention.FechaCreacion,
-                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id).Select(x => x.Id).ToList(),
+                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id && x.Activo).Select(x => x.Id).ToList(),
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
@@ -780,7 +780,7 @@ namespace AgroMarket.Service
                 using (var db = new AgroMarketDbContext())
                 {
 
-                    foreach (var _intention in db.IntencionCompra.ToList())
+                    foreach (var _intention in db.IntencionCompra.Where(x => x.Activo).ToList())
                     {
                         var _new = new IntentionBuying
                         {
@@ -788,7 +788,7 @@ namespace AgroMarket.Service
                             BuyerId = _intention.UsuarioId,
                             Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
                             DateCreation = _intention.FechaCreacion,
-                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id).Select(x => x.Id).ToList(),
+                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id && x.Activo).Select(x => x.Id).ToList(),
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
@@ -869,12 +869,13 @@ namespace AgroMarket.Service
                         response.Error.Description = "Usted no es vendedor!"; // TODO: Sacar mensaje de db
                     }
 
-                    var _intention = new IntencionVenta {
+                    var _intention = new IntencionVenta
+                    {
                         Activo = true,
                         FechaCreacion = DateTime.Now,
                         FechaExpiracion = DateTime.Now.AddDays(30), // TODO: Manejar expiracion quitar magic number
                         IntencionCompraId = request.IntentionToBuydId,
-                        UsuarioId =   _user.Id
+                        UsuarioId = _user.Id
                     };
 
                     db.IntencionVenta.Add(_intention);
@@ -891,7 +892,8 @@ namespace AgroMarket.Service
                             continue; // TODO: Manejar en caso no existe producto enviado
                         }
 
-                        db.ProductoIntencionVenta.Add(new ProductoIntencionVenta {
+                        db.ProductoIntencionVenta.Add(new ProductoIntencionVenta
+                        {
                             Cantidad = prod.Quantity,
                             IntencionVentaId = _intention.Id,
                             PrecioUnidad = prod.PriceUnit,
@@ -910,6 +912,211 @@ namespace AgroMarket.Service
                 response.Error.Description = ex.Message;
 
                 LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), request.userName);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Cancela una intencion de venta
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">Token</param>
+        /// <param name="intentionId">Intention Id</param>
+        /// <returns>Success or not</returns>
+        public ErrorResponse RemoveIntentionToSell(string userName, string token, int intentionId)
+        {
+            ErrorResponse response = new ErrorResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Code = Errores.AG003.ToString();
+                    response.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _user = db.Usuarios.First(x => x.NombreUsuario == userName);
+
+                    if (_user.TipoUsuarioId != 2) // TODO: Quitar magic number
+                    {
+                        response.Code = Errores.AG003.ToString();
+                        response.Description = "El usuario enviado no es un vendedor/productor!"; // TODO: Tomar error desc de la db
+
+                        return response;
+                    }
+
+                    var _intention = db.IntencionVenta.FirstOrDefault(x => x.Id == intentionId);
+
+                    if (_intention != null)
+                    {
+                        _intention.Activo = false;
+                        db.Entry(_intention).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    } // TODO: Manejar error de no existencia
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Code = Errores.AG002.ToString();
+                response.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Obtiene los detalles de una intencion.
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">token</param>
+        /// <param name="intentionId">intention id</param>
+        /// <returns>Intention del id si existe</returns>
+        public IntentionsSellResponse GetIntentionToSell(string userName, string token, int intentionId)
+        {
+            IntentionsSellResponse response = new IntentionsSellResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _intention = db.IntencionVenta.FirstOrDefault(x => x.Id == intentionId);
+
+                    if (_intention != null)
+                    {
+                        var _new = new IntentionSell
+                        {
+                            DateCreation = _intention.FechaCreacion,
+                            ExpirationDate = _intention.FechaExpiracion,
+                            Id = _intention.Id,
+                            SellerId = _intention.Id,
+                            Seller = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre
+                        };
+
+                        foreach (var prod in db.ProductoIntencionVenta.Where(x => x.IntencionVentaId == _intention.Id).ToList())
+                        {
+                            var _producto = db.Productos.FirstOrDefault(x => x.Id == prod.ProductoId);
+                            var _tipoUnidad = db.TipoUnidad.FirstOrDefault(x => x.Id == prod.TipoUnidadId);
+
+                            if ((_producto == null) || (_tipoUnidad == null))
+                            {
+                                continue; // TODO: Manejar error de no existencia
+                            }
+
+                            _new.ProductList.Add(new ProductIntention
+                            {
+                                PriceUnit = prod.PrecioUnidad,
+                                ProductCode = _producto.Codigo,
+                                ProductName = _producto.Descripcion,
+                                ProductUnitId = prod.TipoUnidadId,
+                                ProductUnit = _tipoUnidad.Descripcion,
+                                Quantity = prod.Cantidad
+                            });
+                        }
+                        response.Intentions.Add(_new);
+                    } // TODO: Manejar error de que no existe
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Obtiene todas las intenciones ventas activas.
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">Token</param>
+        /// <returns>Intentions to sell</returns>
+        public IntentionsSellResponse GetAllIntentionsToSell(string userName, string token)
+        {
+            IntentionsSellResponse response = new IntentionsSellResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                #region "obtener todas las intenciones activas y parsear a response"
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    foreach (var _intention in db.IntencionVenta.Where(x => x.Activo).ToList())
+                    {
+                        var _new = new IntentionSell
+                        {
+                            DateCreation = _intention.FechaCreacion,
+                            ExpirationDate = _intention.FechaExpiracion,
+                            Id = _intention.Id,
+                            SellerId = _intention.Id,
+                            Seller = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre
+                        };
+
+                        foreach (var prod in db.ProductoIntencionVenta.Where(x => x.IntencionVentaId == _intention.Id).ToList())
+                        {
+                            var _producto = db.Productos.FirstOrDefault(x => x.Id == prod.ProductoId);
+                            var _tipoUnidad = db.TipoUnidad.FirstOrDefault(x => x.Id == prod.TipoUnidadId);
+
+                            if ((_producto == null) || (_tipoUnidad == null))
+                            {
+                                continue; // TODO: Manejar error de no existencia
+                            }
+
+                            _new.ProductList.Add(new ProductIntention
+                            {
+                                PriceUnit = prod.PrecioUnidad,
+                                ProductCode = _producto.Codigo,
+                                ProductName = _producto.Descripcion,
+                                ProductUnitId = prod.TipoUnidadId,
+                                ProductUnit = _tipoUnidad.Descripcion,
+                                Quantity = prod.Cantidad
+                            });
+                        }
+                        response.Intentions.Add(_new);
+                    }
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }
 
             return response;

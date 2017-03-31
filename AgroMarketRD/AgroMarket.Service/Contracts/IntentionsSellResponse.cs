@@ -7,7 +7,7 @@ using System.Web;
 namespace AgroMarketRD.Service.Contracts
 {
     [DataContract]
-    public class IntentionsSellResponse
+    public class IntentionsSellResponse: BaseAgroContract
     {
         [DataMember]
         public List<IntentionSell> Intentions { get; set; }
@@ -31,7 +31,7 @@ namespace AgroMarketRD.Service.Contracts
         public List<ProductIntention> ProductList { get; set; }
         public DateTime ExpirationDate { get; set; }
         [DataMember]
-        public DateTime DateCreacion { get; set; }
+        public DateTime DateCreation { get; set; }
 
         public IntentionSell()
         {

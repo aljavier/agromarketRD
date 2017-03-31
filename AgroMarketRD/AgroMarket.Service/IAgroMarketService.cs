@@ -148,6 +148,35 @@ namespace AgroMarket.Service
         GeneralResponse CreateIntentionToSell(IntentionToSellRequest request);
 
         /// <summary>
+        /// Cancel an intention to sell
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">Token</param>
+        /// <param name="intentionId">Intention Id</param>
+        /// <returns>Success or not</returns>
+        [OperationContract]
+        ErrorResponse RemoveIntentionToSell(string userName, string token, int intentionId);
+
+        /// <summary>
+        /// Get an intention to sell
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">Token</param>
+        /// <param name="intentionId">intention id</param>
+        /// <returns>Intention with the id sended</returns>
+        [OperationContract]
+        IntentionsSellResponse GetIntentionToSell(string userName, string token, int intentionId);
+
+        /// <summary>
+        /// Get intentions to sell
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="token">Token</param>
+        /// <returns>Intentions to sell</returns>
+        [OperationContract]
+        IntentionsSellResponse GetAllIntentionsToSell(string userName, string token);
+
+        /// <summary>
         /// Make a intention to buy/sell
         /// </summary>
         /// <param name="userId">user id</param>
