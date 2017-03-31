@@ -233,7 +233,7 @@ namespace AgroMarket.Service
         /// <param name="precioUnidad">precio unidad</param>
         /// <param name="tipoUnidad">tipo unidad</param>
         /// <returns>Id de la oferta creada y error de exitoso o fallido</returns>
-        public GeneralResponse CreateOffer(string userName, string token, int cantidad, int tipoUnidad, 
+        public GeneralResponse CreateOffer(string userName, string token, int cantidad, int tipoUnidad,
             decimal precioUnidad, string codigoProducto)
         {
             GeneralResponse response = new GeneralResponse();
@@ -260,7 +260,8 @@ namespace AgroMarket.Service
                         return response;
                     }
 
-                    db.Ofertas.Add(new Oferta {
+                    db.Ofertas.Add(new Oferta
+                    {
                         Activo = true,
                         Cantidad = cantidad,
                         FechaCreacion = DateTime.Now,
@@ -319,7 +320,7 @@ namespace AgroMarket.Service
                         return response;
                     }
 
-                    var _offer = db.Ofertas.FirstOrDefault(x => x.Id == offerId 
+                    var _offer = db.Ofertas.FirstOrDefault(x => x.Id == offerId
                                     && x.UsuarioId == _user.Id);
 
                     if (_offer != null)
@@ -371,7 +372,8 @@ namespace AgroMarket.Service
 
                     if (_offer != null)
                     {
-                        response.Offers.Add(new Offer {
+                        response.Offers.Add(new Offer
+                        {
                             PriceUnit = _offer.PrecioUnidad,
                             ProductCode = _offer.Producto.Codigo,
                             ProductName = _offer.Producto.Descripcion,
@@ -420,7 +422,8 @@ namespace AgroMarket.Service
 
                 using (var db = new AgroMarketDbContext())
                 {
-                    response.Offers = db.Ofertas.Select(x => new Offer {
+                    response.Offers = db.Ofertas.Select(x => new Offer
+                    {
                         PriceUnit = x.PrecioUnidad,
                         ProductCode = x.Producto.Codigo,
                         ProductName = x.Producto.Descripcion,
@@ -501,7 +504,8 @@ namespace AgroMarket.Service
 
                     foreach (var prod in request.ProductList)
                     {
-                        db.ProductoIntencionCompra.Add(new ProductoIntencionCompra {
+                        db.ProductoIntencionCompra.Add(new ProductoIntencionCompra
+                        {
                             cantidad = prod.Quantity,
                             IntencionCompraId = _intention.Id,
                             PrecioUnidad = prod.PriceUnit,
@@ -699,7 +703,8 @@ namespace AgroMarket.Service
 
                     if (_intention != null)
                     {
-                        var _new = new IntentionBuying {
+                        var _new = new IntentionBuying
+                        {
                             Id = _intention.Id,
                             BuyerId = _intention.UsuarioId,
                             Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
@@ -717,7 +722,8 @@ namespace AgroMarket.Service
                                 continue; // TODO: Manejar errores
                             }
 
-                            _new.ProductList.Add(new ProductIntention {
+                            _new.ProductList.Add(new ProductIntention
+                            {
                                 PriceUnit = prod.PrecioUnidad,
                                 ProductCode = _producto.Codigo,
                                 ProductName = _producto.Descripcion,
@@ -751,7 +757,70 @@ namespace AgroMarket.Service
         /// <returns>Lista de solicitudes disponibles</returns>
         public IntentionBuyingResponse GetAllIntentionsToBuy(string userName, string token)
         {
-            throw new NotImplementedException();
+            IntentionBuyingResponse response = new IntentionBuyingResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+
+                    foreach (var _intention in db.IntencionCompra.ToList())
+                    {
+                        var _new = new IntentionBuying
+                        {
+                            Id = _intention.Id,
+                            BuyerId = _intention.UsuarioId,
+                            Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
+                            DateCreation = _intention.FechaCreacion,
+                            ExpirationDate = _intention.FechaExpiracion,
+                        };
+
+                        foreach (var prod in db.ProductoIntencionCompra.Where(x => x.IntencionCompraId == _intention.Id))
+                        {
+                            var _producto = db.Productos.FirstOrDefault(x => x.Id == prod.ProductoId);
+                            var _tipoUnidad = db.TipoUnidad.FirstOrDefault(x => x.Id == prod.TipoUnidadId);
+
+                            if ((_producto == null) || (_tipoUnidad == null))
+                            {
+                                continue; // TODO: Manejar errores
+                            }
+
+                            _new.ProductList.Add(new ProductIntention
+                            {
+                                PriceUnit = prod.PrecioUnidad,
+                                ProductCode = _producto.Codigo,
+                                ProductName = _producto.Descripcion,
+                                ProductUnit = _tipoUnidad.Descripcion,
+                                ProductUnitId = prod.TipoUnidadId,
+                                Quantity = prod.cantidad
+                            });
+
+                            response.Intentions.Add(_new);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
         }
 
         /// <summary>
