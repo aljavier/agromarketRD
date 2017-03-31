@@ -23,6 +23,7 @@ namespace AgroMarketRD.Service.Contracts
         public IntentionBuying()
         {
             ProductList = new List<ProductIntention>();
+            IntentionsToSellId = new List<int>();
         }
 
         [DataMember]
@@ -33,6 +34,8 @@ namespace AgroMarketRD.Service.Contracts
         public string Buyer { get; set; }
         [DataMember]
         public List<ProductIntention> ProductList { get; set; }
+        [DataMember]
+        public List<int> IntentionsToSellId { get; set; }
         [DataMember]
         public DateTime DateCreation { get; set; }
         [DataMember]

@@ -714,6 +714,7 @@ namespace AgroMarket.Service
                             BuyerId = _intention.UsuarioId,
                             Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
                             DateCreation = _intention.FechaCreacion,
+                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id).Select(x => x.Id).ToList(),
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
@@ -787,6 +788,7 @@ namespace AgroMarket.Service
                             BuyerId = _intention.UsuarioId,
                             Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
                             DateCreation = _intention.FechaCreacion,
+                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id).Select(x => x.Id).ToList(),
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
