@@ -28,7 +28,7 @@ namespace AgroMarketRD.Core
         public virtual DbSet<ProductoIntencionVenta> ProductoIntencionVenta { get; set; }
         public virtual DbSet<AccesoLog> AccesoLog { get; set; }
         public virtual DbSet<ErrorLog> ErrorLog { get; set; }
-
+        public virtual DbSet<Venta> Ventas { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cuenta>()

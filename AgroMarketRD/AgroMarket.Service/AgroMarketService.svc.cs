@@ -1054,7 +1054,7 @@ namespace AgroMarket.Service
         /// <param name="userName">User name</param>
         /// <param name="token">Token</param>
         /// <returns>Intentions to sell</returns>
-        public IntentionsSellResponse GetAllIntentionsToSell(string userName, string token)
+        public IntentionsSellResponse GetIntentionsToSell(string userName, string token)
         {
             IntentionsSellResponse response = new IntentionsSellResponse();
 
@@ -1123,17 +1123,120 @@ namespace AgroMarket.Service
         }
 
         /// <summary>
-        /// Crea una intencion de compra.
+        /// Sella un trato de venta y compra. Tanto vendedor como comprador deben sellar
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user name</param>
         /// <param name="token">token</param>
-        /// <param name="offerId">offer id</param>
-        /// <param name="requestId">request id</param>
-        /// <param name="quantity">quantity, optional</param>
-        /// <returns>Informacion d ela intencion de compra con id y demas.</returns>
-        public IntentionBuyingResponse MakeDeal(string userId, string token, int offerId, int requestId, int quantity = 0)
+        /// <param name="intentionSellId">itencion compra id</param>
+        /// <param name="intentionBuyId">intecion venta id</param>
+        /// <returns>Repuesta exitoso o no</returns>
+        public ErrorResponse MakeDeal(string userName, string token, int intentionSellId, int intentionBuyId)
         {
-            throw new NotImplementedException();
+            ErrorResponse response = new ErrorResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Code = Errores.AG003.ToString();
+                    response.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _user = db.Usuarios.First(x => x.NombreUsuario == userName);
+
+                    if ((_user.TipoUsuarioId != 2) && (_user.TipoUsuarioId != 1)) // TODO: Quitar magic numbers
+                    {
+                        response.Code = Errores.AG003.ToString();
+                        response.Description = "Tipo de usuario no válida para esta acción."; // TODO: Poner mensage de la db
+
+                        return response;
+                    }
+
+                    if (db.IntencionCompra.Any(x => x.UsuarioId == _user.Id)
+                        && db.IntencionVenta.Any(x => x.UsuarioId == _user.Id))
+                    {
+                        response.Code = Errores.AG003.ToString();
+                        response.Description = "Esta intención no es propieda del usuario que consulta!"; // TODO: Poner de db
+
+                        return response;
+                    }
+
+                    #region "firmar transacción"
+
+                    var _firma = db.Firmas.FirstOrDefault(x => x.IntencionCompraId == intentionBuyId
+                            && x.IntencionVentaId == intentionSellId);
+                    bool isUpdate = (_firma != null);
+
+                    if (_firma == null)
+                    {
+                        _firma = new Firma();
+                        _firma.FechaCreacion = DateTime.Now;
+                    } else {
+                        _firma.FechaFinal = DateTime.Now;
+                    }
+
+                    if (_user.TipoUsuarioId == 2) // Productor - TODO: Quitar magic number
+                    {
+                        _firma.Vendedor = _user.Id;
+                    }
+                    else
+                    {
+                        _firma.Comprador = _user.Id;
+                    }
+
+                    _firma.IntencionCompraId = intentionBuyId;
+                    _firma.IntencionVentaId = intentionSellId;
+
+                    if (isUpdate)
+                    {
+                        db.Entry(_firma).State = System.Data.Entity.EntityState.Modified;
+                    }
+                    else {
+                        db.Firmas.Add(_firma);
+                    }
+
+                    db.SaveChanges();
+
+                    if (db.Firmas.Any(x => x.Id == _firma.Id && x.Vendedor.HasValue && x.Comprador.HasValue)) // Termino
+                    {
+                        var _intention = db.IntencionCompra.First(x => x.Id == intentionSellId);
+
+                        _intention.Activo = false;
+                        db.Entry(_intention).State = System.Data.Entity.EntityState.Modified;
+
+                        db.Ventas.Add(new Venta
+                        {
+                            FirmaId = _firma.Id,
+                            IntencionCompraId = intentionBuyId,
+                            IntencionVentaId = intentionSellId,
+                        });
+                        db.SaveChanges();
+
+                        response.Description = "El pago ha sido terminado. Ambas partes han firmado!";
+                    }
+                    else
+                    {
+                        response.Description = "Todavia la otra parte tiene que firmar para concretarse la venta/compra";
+                    }
+                    #endregion
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Code = Errores.AG002.ToString();
+                response.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
         }
     }
 }

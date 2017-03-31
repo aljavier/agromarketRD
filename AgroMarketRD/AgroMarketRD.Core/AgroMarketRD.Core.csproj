@@ -89,6 +89,7 @@
     <Compile Include="Entities\ProductoIntencionCompra.cs" />
     <Compile Include="Entities\ProductoIntencionVenta.cs" />
     <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Entities\Venta.cs" />
     <Compile Include="Enums\Enumeradores.cs" />
     <Compile Include="Helpers\CryptoHelper.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
