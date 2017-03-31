@@ -123,31 +123,21 @@ namespace AgroMarket.Service
         /// <summary>
         /// Get a request
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
-        /// <param name="requestId">request id</param>
+        /// <param name="intentionId">request id</param>
         /// <returns>Request response</returns>
         [OperationContract]
-        RequestResponse GetRequest(string userId, string token, int requestId);
+        IntentionBuyingResponse GetIntentionToBuy(string userName, string token, int intentionId);
 
         /// <summary>
         /// Get all requests
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <returns>All requests in the market</returns>
         [OperationContract]
-        RequestResponse GetAllRequests(string userId, string token);
-
-        /// <summary>
-        /// Get a intention to buy
-        /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <param name="intentionId">intention id</param>
-        /// <returns>Intention buying response</returns>
-        [OperationContract]
-        IntentionBuyingResponse GetIntentionBuying(string userId, string token, int intentionId);
+        IntentionBuyingResponse GetAllIntentionsToBuy(string userName, string token);
 
         /// <summary>
         /// Cancel intention buying

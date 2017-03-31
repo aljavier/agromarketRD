@@ -673,34 +673,83 @@ namespace AgroMarket.Service
         /// <summary>
         /// Obtiene una solicitud de un producto por el id.
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
-        /// <param name="requestId">request id</param>
+        /// <param name="intentionId">request id</param>
         /// <returns>Solicitud del id si existe</returns>
-        public RequestResponse GetRequest(string userId, string token, int requestId)
+        public IntentionBuyingResponse GetIntentionToBuy(string userName, string token, int intentionId)
         {
-            throw new NotImplementedException();
+            IntentionBuyingResponse response = new IntentionBuyingResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _intention = db.IntencionCompra.FirstOrDefault(x => x.Id == intentionId);
+
+                    if (_intention != null)
+                    {
+                        var _new = new IntentionBuying {
+                            Id = _intention.Id,
+                            BuyerId = _intention.UsuarioId,
+                            Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
+                            DateCreation = _intention.FechaCreacion,
+                            ExpirationDate = _intention.FechaExpiracion,
+                        };
+
+                        foreach (var prod in db.ProductoIntencionCompra.Where(x => x.IntencionCompraId == _intention.Id))
+                        {
+                            var _producto = db.Productos.FirstOrDefault(x => x.Id == prod.ProductoId);
+                            var _tipoUnidad = db.TipoUnidad.FirstOrDefault(x => x.Id == prod.TipoUnidadId);
+
+                            if ((_producto == null) || (_tipoUnidad == null))
+                            {
+                                continue; // TODO: Manejar errores
+                            }
+
+                            _new.ProductList.Add(new ProductIntention {
+                                PriceUnit = prod.PrecioUnidad,
+                                ProductCode = _producto.Codigo,
+                                ProductName = _producto.Descripcion,
+                                ProductUnit = _tipoUnidad.Descripcion,
+                                ProductUnitId = prod.TipoUnidadId,
+                                Quantity = prod.cantidad
+                            });
+
+                            response.Intentions.Add(_new);
+                        }
+                    } // TODO: Manejar error de respuesta de que no existe 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
         }
 
         /// <summary>
         /// Obtiene todas las solicitudes hechas en el mercado que aun esten activas
         /// </summary>
-        /// <param name="userId">user id</param>
+        /// <param name="userName">user id</param>
         /// <param name="token">token</param>
         /// <returns>Lista de solicitudes disponibles</returns>
-        public RequestResponse GetAllRequests(string userId, string token)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Obtiene una intencion de compra por id
-        /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <param name="intentionId">intention id</param>
-        /// <returns>Intention de compra del id si existe</returns>
-        public IntentionBuyingResponse GetIntentionBuying(string userId, string token, int intentionId)
+        public IntentionBuyingResponse GetAllIntentionsToBuy(string userName, string token)
         {
             throw new NotImplementedException();
         }

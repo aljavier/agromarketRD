@@ -36,7 +36,7 @@ Dicho demás esta, que si se crea un proxy class (Ver [Consuming a Web Service](
         2. Nombre
         3. Cantidad
         4. Precio
-* ~~Puede seleccionar productos colgados en el mercado ~~
+* ~~Puede seleccionar productos colgados en el mercado~~
     ~~1. Puede comprar más de uno a la vez.~~
 
 **Otros**:

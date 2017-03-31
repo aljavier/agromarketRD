@@ -17,6 +17,8 @@ namespace AgroMarketRD.Core.Entities
         public int Id { get; set; }
         [Column("usuario_id")]
         public int UsuarioId { get; set; }
+        [Column("intencion_compra_id")]
+        public int IntentionCompraId { get; set; }
         [Column("fecha_creacion")]
         public DateTime FechaCreacion { get; set; }
         [Column("fecha_expiracion")]
@@ -26,5 +28,6 @@ namespace AgroMarketRD.Core.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductoIntencionVenta> ProductoIntencionVenta { get; set; }
+        public IntencionCompra IntencionCompra { get; set; }
     }
 }

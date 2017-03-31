@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="7d93ba9c-9d7b-453f-a91b-93138f7559d8" activeEnvironment="Default" name="AgroMarketService" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="6d502d5e-631f-4c14-9e4d-99b4a1d95598" wsaVersion="NONE" name="BasicHttpBinding_IAgroMarketService" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_IAgroMarketService" soapVersion="1_1" anonymous="optional" definition="http://localhost:50629/AgroMarketService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:50629/AgroMarketService.svc?wsdl"><con:part><con:url>http://localhost:50629/AgroMarketService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="AgroMarketService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+<con:soapui-project id="7d93ba9c-9d7b-453f-a91b-93138f7559d8" activeEnvironment="Default" name="AgroMarketService" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="6d502d5e-631f-4c14-9e4d-99b4a1d95598" wsaVersion="NONE" name="BasicHttpBinding_IAgroMarketService" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_IAgroMarketService" soapVersion="1_1" anonymous="optional" definition="http://localhost:50629/AgroMarketService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:50629/AgroMarketService.svc?wsdl"><con:part><con:url>http://localhost:50629/AgroMarketService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="AgroMarketService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:50629/AgroMarketService.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
@@ -75,23 +75,17 @@
   <wsdl:message name="IAgroMarketService_RemoveIntentionToBuy_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveIntentionToBuyResponse"/>
   </wsdl:message>
-  <wsdl:message name="IAgroMarketService_GetRequest_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetRequest"/>
+  <wsdl:message name="IAgroMarketService_GetIntiontToBuy_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIntiontToBuy"/>
   </wsdl:message>
-  <wsdl:message name="IAgroMarketService_GetRequest_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetRequestResponse"/>
+  <wsdl:message name="IAgroMarketService_GetIntiontToBuy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIntiontToBuyResponse"/>
   </wsdl:message>
-  <wsdl:message name="IAgroMarketService_GetAllRequests_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllRequests"/>
+  <wsdl:message name="IAgroMarketService_GetAllIntentionsToBuy_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIntentionsToBuy"/>
   </wsdl:message>
-  <wsdl:message name="IAgroMarketService_GetAllRequests_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllRequestsResponse"/>
-  </wsdl:message>
-  <wsdl:message name="IAgroMarketService_GetIntentionBuying_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetIntentionBuying"/>
-  </wsdl:message>
-  <wsdl:message name="IAgroMarketService_GetIntentionBuying_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetIntentionBuyingResponse"/>
+  <wsdl:message name="IAgroMarketService_GetAllIntentionsToBuy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIntentionsToBuyResponse"/>
   </wsdl:message>
   <wsdl:message name="IAgroMarketService_CancelIntentionBuying_InputMessage">
     <wsdl:part name="parameters" element="tns:CancelIntentionBuying"/>
@@ -156,17 +150,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAgroMarketService/RemoveIntentionToBuy" message="tns:IAgroMarketService_RemoveIntentionToBuy_InputMessage"/>
       <wsdl:output wsaw:Action="http://tempuri.org/IAgroMarketService/RemoveIntentionToBuyResponse" message="tns:IAgroMarketService_RemoveIntentionToBuy_OutputMessage"/>
     </wsdl:operation>
-    <wsdl:operation name="GetRequest">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAgroMarketService/GetRequest" message="tns:IAgroMarketService_GetRequest_InputMessage"/>
-      <wsdl:output wsaw:Action="http://tempuri.org/IAgroMarketService/GetRequestResponse" message="tns:IAgroMarketService_GetRequest_OutputMessage"/>
+    <wsdl:operation name="GetIntiontToBuy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgroMarketService/GetIntiontToBuy" message="tns:IAgroMarketService_GetIntiontToBuy_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgroMarketService/GetIntiontToBuyResponse" message="tns:IAgroMarketService_GetIntiontToBuy_OutputMessage"/>
     </wsdl:operation>
-    <wsdl:operation name="GetAllRequests">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAgroMarketService/GetAllRequests" message="tns:IAgroMarketService_GetAllRequests_InputMessage"/>
-      <wsdl:output wsaw:Action="http://tempuri.org/IAgroMarketService/GetAllRequestsResponse" message="tns:IAgroMarketService_GetAllRequests_OutputMessage"/>
-    </wsdl:operation>
-    <wsdl:operation name="GetIntentionBuying">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAgroMarketService/GetIntentionBuying" message="tns:IAgroMarketService_GetIntentionBuying_InputMessage"/>
-      <wsdl:output wsaw:Action="http://tempuri.org/IAgroMarketService/GetIntentionBuyingResponse" message="tns:IAgroMarketService_GetIntentionBuying_OutputMessage"/>
+    <wsdl:operation name="GetAllIntentionsToBuy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuy" message="tns:IAgroMarketService_GetAllIntentionsToBuy_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuyResponse" message="tns:IAgroMarketService_GetAllIntentionsToBuy_OutputMessage"/>
     </wsdl:operation>
     <wsdl:operation name="CancelIntentionBuying">
       <wsdl:input wsaw:Action="http://tempuri.org/IAgroMarketService/CancelIntentionBuying" message="tns:IAgroMarketService_CancelIntentionBuying_InputMessage"/>
@@ -282,8 +272,8 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetRequest">
-      <soap:operation soapAction="http://tempuri.org/IAgroMarketService/GetRequest" style="document"/>
+    <wsdl:operation name="GetIntiontToBuy">
+      <soap:operation soapAction="http://tempuri.org/IAgroMarketService/GetIntiontToBuy" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>
       </wsdl:input>
@@ -291,17 +281,8 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllRequests">
-      <soap:operation soapAction="http://tempuri.org/IAgroMarketService/GetAllRequests" style="document"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetIntentionBuying">
-      <soap:operation soapAction="http://tempuri.org/IAgroMarketService/GetIntentionBuying" style="document"/>
+    <wsdl:operation name="GetAllIntentionsToBuy">
+      <soap:operation soapAction="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuy" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>
       </wsdl:input>
@@ -515,50 +496,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetRequest">
+  <xs:element name="GetIntiontToBuy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string"/>
-        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string"/>
-        <xs:element minOccurs="0" name="requestId" type="xs:int"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetRequestResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetRequestResult" nillable="true" type="q14:RequestResponse" xmlns:q14="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllRequests">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string"/>
-        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAllRequestsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetAllRequestsResult" nillable="true" type="q15:RequestResponse" xmlns:q15="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetIntentionBuying">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
         <xs:element minOccurs="0" name="token" nillable="true" type="xs:string"/>
         <xs:element minOccurs="0" name="intentionId" type="xs:int"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetIntentionBuyingResponse">
+  <xs:element name="GetIntiontToBuyResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetIntentionBuyingResult" nillable="true" type="q16:IntentionBuyingResponse" xmlns:q16="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
+        <xs:element minOccurs="0" name="GetIntiontToBuyResult" nillable="true" type="q14:IntentionBuyingResponse" xmlns:q14="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllIntentionsToBuy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllIntentionsToBuyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAllIntentionsToBuyResult" nillable="true" type="q15:IntentionBuyingResponse" xmlns:q15="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -574,7 +539,7 @@
   <xs:element name="CancelIntentionBuyingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="CancelIntentionBuyingResult" nillable="true" type="q17:ErrorResponse" xmlns:q17="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
+        <xs:element minOccurs="0" name="CancelIntentionBuyingResult" nillable="true" type="q16:ErrorResponse" xmlns:q16="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -589,7 +554,7 @@
   <xs:element name="GetAllIntentionsBuyingResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetAllIntentionsBuyingResult" nillable="true" type="q18:IntentionBuyingResponse" xmlns:q18="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
+        <xs:element minOccurs="0" name="GetAllIntentionsBuyingResult" nillable="true" type="q17:IntentionBuyingResponse" xmlns:q17="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -607,7 +572,7 @@
   <xs:element name="MakeDealResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="MakeDealResult" nillable="true" type="q19:IntentionBuyingResponse" xmlns:q19="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
+        <xs:element minOccurs="0" name="MakeDealResult" nillable="true" type="q18:IntentionBuyingResponse" xmlns:q18="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -723,32 +688,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Offer" nillable="true" type="tns:Offer"/>
-  <xs:complexType name="RequestResponse">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseAgroContract">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Requests" nillable="true" type="tns:ArrayOfRequest"/>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="RequestResponse" nillable="true" type="tns:RequestResponse"/>
-  <xs:complexType name="ArrayOfRequest">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Request" nillable="true" type="tns:Request"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfRequest" nillable="true" type="tns:ArrayOfRequest"/>
-  <xs:complexType name="Request">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="BuyerId" type="xs:int"/>
-      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string"/>
-      <xs:element minOccurs="0" name="Id" type="xs:int"/>
-      <xs:element minOccurs="0" name="ProductId" type="xs:int"/>
-      <xs:element minOccurs="0" name="ProductUnitId" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Request" nillable="true" type="tns:Request"/>
   <xs:complexType name="IntentionBuyingResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseAgroContract">
@@ -767,14 +706,32 @@
   <xs:element name="ArrayOfIntentionBuying" nillable="true" type="tns:ArrayOfIntentionBuying"/>
   <xs:complexType name="IntentionBuying">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Buyer" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="BuyerId" type="xs:int"/>
+      <xs:element minOccurs="0" name="DateCreation" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="ExpirationDate" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="Id" type="xs:int"/>
-      <xs:element minOccurs="0" name="OfferId" type="xs:int"/>
-      <xs:element minOccurs="0" name="Quantity" type="xs:int"/>
-      <xs:element minOccurs="0" name="RequestId" type="xs:int"/>
+      <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfProductIntention"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="IntentionBuying" nillable="true" type="tns:IntentionBuying"/>
+  <xs:complexType name="ArrayOfProductIntention">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductIntention" nillable="true" type="tns:ProductIntention"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductIntention" nillable="true" type="tns:ArrayOfProductIntention"/>
+  <xs:complexType name="ProductIntention">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PriceUnit" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="ProductCode" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductUnit" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="ProductUnitId" type="xs:int"/>
+      <xs:element minOccurs="0" name="Quantity" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductIntention" nillable="true" type="tns:ProductIntention"/>
 </xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:50629/AgroMarketService.svc?xsd=xsd3</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests">
   <xs:import schemaLocation="http://localhost:50629/AgroMarketService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
   <xs:complexType name="IntentionToBuyFromProducts">
@@ -916,29 +873,7 @@
          <tem:token>2b1a000c-ad14-4de6-bc32-99f7737ff7de</tem:token>
       </tem:GetAllOffers>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetAllOffers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="1182a039-72f7-4881-afca-90aaf6645a7d" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetAllRequests" name="GetAllRequests" bindingOperationName="GetAllRequests" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d818655b-2d4a-4311-954e-fa5e6f58fc79" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/AgroMarketService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <tem:GetAllRequests>\r
-         <!--Optional:-->\r
-         <tem:userId>?</tem:userId>\r
-         <!--Optional:-->\r
-         <tem:token>?</tem:token>\r
-      </tem:GetAllRequests>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetAllRequests"/></con:call></con:operation><con:operation id="9eb695f7-ebf1-4be6-9e18-faa69208797a" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetIntentionBuying" name="GetIntentionBuying" bindingOperationName="GetIntentionBuying" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="cc725b71-ab39-4c6f-9eb3-d9c21458d84f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/AgroMarketService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <tem:GetIntentionBuying>\r
-         <!--Optional:-->\r
-         <tem:userId>?</tem:userId>\r
-         <!--Optional:-->\r
-         <tem:token>?</tem:token>\r
-         <!--Optional:-->\r
-         <tem:intentionId>?</tem:intentionId>\r
-      </tem:GetIntentionBuying>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetIntentionBuying"/></con:call></con:operation><con:operation id="fff4e60b-48b5-45f7-8017-563a48074362" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetOffer" name="GetOffer" bindingOperationName="GetOffer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8b7068d0-6f6e-400e-b20a-79f375a77a0e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/AgroMarketService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetAllOffers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="fff4e60b-48b5-45f7-8017-563a48074362" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetOffer" name="GetOffer" bindingOperationName="GetOffer" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8b7068d0-6f6e-400e-b20a-79f375a77a0e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/AgroMarketService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <tem:GetOffer>\r
@@ -959,19 +894,7 @@
          <tem:token>2b1a000c-ad14-4de6-bc32-99f7737ff7de</tem:token>
       </tem:GetProducts>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetProducts"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="039974d9-61f8-4233-a096-e73a290ebdb9" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetRequest" name="GetRequest" bindingOperationName="GetRequest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a35edda5-747e-4082-ab91-03105c2cbc70" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/AgroMarketService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
-   <soapenv:Header/>\r
-   <soapenv:Body>\r
-      <tem:GetRequest>\r
-         <!--Optional:-->\r
-         <tem:userId>?</tem:userId>\r
-         <!--Optional:-->\r
-         <tem:token>?</tem:token>\r
-         <!--Optional:-->\r
-         <tem:requestId>?</tem:requestId>\r
-      </tem:GetRequest>\r
-   </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetRequest"/></con:call></con:operation><con:operation id="45ebdb90-3f14-4d73-9b47-4d31f15b9db6" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetUnitTypes" name="GetUnitTypes" bindingOperationName="GetUnitTypes" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d9b9e16f-6ae0-4db3-beb7-4a57caf766de" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/AgroMarketService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetProducts"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="45ebdb90-3f14-4d73-9b47-4d31f15b9db6" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetUnitTypes" name="GetUnitTypes" bindingOperationName="GetUnitTypes" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d9b9e16f-6ae0-4db3-beb7-4a57caf766de" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/AgroMarketService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
    <soapenv:Header/>\r
    <soapenv:Body>\r
       <tem:GetUnitTypes>\r
@@ -1096,7 +1019,29 @@
          </tem:request>\r
       </tem:CreateIntentionToBuyFromOffers>\r
    </soapenv:Body>\r
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffers"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="e76210d3-7817-49fb-a026-584ff1a24d04" port="8088" path="/mockAgroMarkService" host="EST0301TEC097" name="AgroMarketWS"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CancelIntentionBuying" id="5f9e430d-797f-4e69-8ae7-f048ae24feb3" interface="BasicHttpBinding_IAgroMarketService" operation="CancelIntentionBuying"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="d1a18608-49fe-4588-9d06-477875410173" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="1bcc1352-8dea-420d-b890-c3b45ef5aef7" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetIntiontToBuy" name="GetIntiontToBuy" bindingOperationName="GetIntiontToBuy" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0c5a4df6-38b2-44b2-b7d5-0836c23871f9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:50629/mockAgroMarkService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetIntiontToBuy>\r
+         <!--Optional:-->\r
+         <tem:userName>equipo1</tem:userName>\r
+         <!--Optional:-->\r
+         <tem:token>2b1a000c-ad14-4de6-bc32-99f7737ff7de</tem:token>\r
+         <!--Optional:-->\r
+         <tem:intentionId>1</tem:intentionId>\r
+      </tem:GetIntiontToBuy>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetIntiontToBuy"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="bc6ee83c-f926-4813-ad8b-bfcae8b6440c" isOneWay="false" action="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuy" name="GetAllIntentionsToBuy" bindingOperationName="GetAllIntentionsToBuy" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2a93f4e3-ec5c-4c1b-b64c-e254fd56a30b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://EST0301TEC097:8088/mockAgroMarkService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetAllIntentionsToBuy>\r
+         <!--Optional:-->\r
+         <tem:userName>?</tem:userName>\r
+         <!--Optional:-->\r
+         <tem:token>?</tem:token>\r
+      </tem:GetAllIntentionsToBuy>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuy"/></con:call></con:operation></con:interface><con:mockService id="e76210d3-7817-49fb-a026-584ff1a24d04" port="8088" path="/mockAgroMarkService" host="EST0301TEC097" name="AgroMarketWS"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="CancelIntentionBuying" id="5f9e430d-797f-4e69-8ae7-f048ae24feb3" interface="BasicHttpBinding_IAgroMarketService" operation="CancelIntentionBuying"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="d1a18608-49fe-4588-9d06-477875410173" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
    <soapenv:Header/>
    <soapenv:Body>
       <tem:CancelIntentionBuyingResponse>
@@ -1199,71 +1144,7 @@
          </tem:GetAllOffersResult>
       </tem:GetAllOffersResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetAllOffers"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetAllRequests" id="32f02768-aad1-4f25-8cae-f51dd02ddfce" interface="BasicHttpBinding_IAgroMarketService" operation="GetAllRequests"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="80a951f3-cb21-43a9-9e76-d5ec9f1a2fad" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <tem:GetAllRequestsResponse>
-         <!--Optional:-->
-         <tem:GetAllRequestsResult>
-            <!--Optional:-->
-            <agr:Error>
-               <!--Optional:-->
-               <agr:Code>?</agr:Code>
-               <!--Optional:-->
-               <agr:Description>?</agr:Description>
-            </agr:Error>
-            <!--Optional:-->
-            <agr:Requests>
-               <!--Zero or more repetitions:-->
-               <agr:Request>
-                  <!--Optional:-->
-                  <agr:BuyerId>?</agr:BuyerId>
-                  <!--Optional:-->
-                  <agr:Comment>?</agr:Comment>
-                  <!--Optional:-->
-                  <agr:Id>?</agr:Id>
-                  <!--Optional:-->
-                  <agr:ProductId>?</agr:ProductId>
-                  <!--Optional:-->
-                  <agr:ProductUnitId>?</agr:ProductUnitId>
-               </agr:Request>
-            </agr:Requests>
-         </tem:GetAllRequestsResult>
-      </tem:GetAllRequestsResponse>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetAllRequests"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetIntentionBuying" id="ed97b47d-127f-4149-882a-a590c4a54fb5" interface="BasicHttpBinding_IAgroMarketService" operation="GetIntentionBuying"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="c8044442-3c7d-4dd1-a79b-e31ce96a6e43" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <tem:GetIntentionBuyingResponse>
-         <!--Optional:-->
-         <tem:GetIntentionBuyingResult>
-            <!--Optional:-->
-            <agr:Error>
-               <!--Optional:-->
-               <agr:Code>?</agr:Code>
-               <!--Optional:-->
-               <agr:Description>?</agr:Description>
-            </agr:Error>
-            <!--Optional:-->
-            <agr:Intentions>
-               <!--Zero or more repetitions:-->
-               <agr:IntentionBuying>
-                  <!--Optional:-->
-                  <agr:ExpirationDate>?</agr:ExpirationDate>
-                  <!--Optional:-->
-                  <agr:Id>?</agr:Id>
-                  <!--Optional:-->
-                  <agr:OfferId>?</agr:OfferId>
-                  <!--Optional:-->
-                  <agr:Quantity>?</agr:Quantity>
-                  <!--Optional:-->
-                  <agr:RequestId>?</agr:RequestId>
-               </agr:IntentionBuying>
-            </agr:Intentions>
-         </tem:GetIntentionBuyingResult>
-      </tem:GetIntentionBuyingResponse>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetIntentionBuying"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetOffer" id="44bc833a-1d8a-4042-9bba-3b87ea71dd24" interface="BasicHttpBinding_IAgroMarketService" operation="GetOffer"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="55887306-3629-409d-a6c0-e18a381bc21f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetAllOffers"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetOffer" id="44bc833a-1d8a-4042-9bba-3b87ea71dd24" interface="BasicHttpBinding_IAgroMarketService" operation="GetOffer"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="55887306-3629-409d-a6c0-e18a381bc21f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
    <soapenv:Header/>
    <soapenv:Body>
       <tem:GetOfferResponse>
@@ -1329,39 +1210,7 @@
          </tem:GetProductsResult>
       </tem:GetProductsResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetProducts"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetRequest" id="6ce47f94-c9b4-40a8-9ce7-f3d4a6fa872f" interface="BasicHttpBinding_IAgroMarketService" operation="GetRequest"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="a44b22ef-b973-4a8e-991f-5b5a5e606eb1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <tem:GetRequestResponse>
-         <!--Optional:-->
-         <tem:GetRequestResult>
-            <!--Optional:-->
-            <agr:Error>
-               <!--Optional:-->
-               <agr:Code>?</agr:Code>
-               <!--Optional:-->
-               <agr:Description>?</agr:Description>
-            </agr:Error>
-            <!--Optional:-->
-            <agr:Requests>
-               <!--Zero or more repetitions:-->
-               <agr:Request>
-                  <!--Optional:-->
-                  <agr:BuyerId>?</agr:BuyerId>
-                  <!--Optional:-->
-                  <agr:Comment>?</agr:Comment>
-                  <!--Optional:-->
-                  <agr:Id>?</agr:Id>
-                  <!--Optional:-->
-                  <agr:ProductId>?</agr:ProductId>
-                  <!--Optional:-->
-                  <agr:ProductUnitId>?</agr:ProductUnitId>
-               </agr:Request>
-            </agr:Requests>
-         </tem:GetRequestResult>
-      </tem:GetRequestResponse>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetRequest"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetUnitTypes" id="2837c4ad-f5d2-4431-a604-88731d28cd95" interface="BasicHttpBinding_IAgroMarketService" operation="GetUnitTypes"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="0da434e5-8e4f-4fd0-9553-84ff8e488f2e" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/GetProducts"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetUnitTypes" id="2837c4ad-f5d2-4431-a604-88731d28cd95" interface="BasicHttpBinding_IAgroMarketService" operation="GetUnitTypes"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="0da434e5-8e4f-4fd0-9553-84ff8e488f2e" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:agr="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts">
    <soapenv:Header/>
    <soapenv:Body>
       <tem:GetUnitTypesResponse>
@@ -1516,4 +1365,4 @@
          </tem:CreateIntentionToBuyFromOffersResult>
       </tem:CreateIntentionToBuyFromOffersResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffers"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffers"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -84,11 +84,11 @@
     <Compile Include="Contracts\BaseAgroContract.cs" />
     <Compile Include="Contracts\GeneralResponse.cs" />
     <Compile Include="Contracts\IntentionBuyingResponse.cs" />
+    <Compile Include="Contracts\IntentionsSellResponse.cs" />
     <Compile Include="Contracts\LoginResponse.cs" />
     <Compile Include="Contracts\OfferResponse.cs" />
     <Compile Include="Contracts\ProductResponse.cs" />
     <Compile Include="Contracts\ProductUnitResponse.cs" />
-    <Compile Include="Contracts\RequestResponse.cs" />
     <Compile Include="Helpers\AccessHelper.cs" />
     <Compile Include="IAgroMarketService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
