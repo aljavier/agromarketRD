@@ -232,7 +232,7 @@ namespace AgroMarket.Service
         /// <param name="codigoProducto">codigo producto</param>
         /// <param name="precioUnidad">precio unidad</param>
         /// <param name="tipoUnidad">tipo unidad</param>
-        /// <returns>Id de la oferta creada y error de exitoso o fallido</returns>
+        /// <returns>Id de la oferta creada y error de exitoso o fallid</returns>
         public GeneralResponse CreateOffer(string userName, string token, int cantidad, int tipoUnidad,
             decimal precioUnidad, string codigoProducto)
         {
@@ -260,7 +260,7 @@ namespace AgroMarket.Service
                         return response;
                     }
 
-                    db.Ofertas.Add(new Oferta
+                    var _offer = new Oferta
                     {
                         Activo = true,
                         Cantidad = cantidad,
@@ -269,8 +269,13 @@ namespace AgroMarket.Service
                         ProductoId = db.Productos.First(x => x.Codigo == codigoProducto).Id, // TODO: Validar que código producto es válido
                         TipoUnidadId = tipoUnidad,
                         UsuarioId = db.Usuarios.First(x => x.NombreUsuario == userName).Id
-                    });
-                    response.Id = db.SaveChanges();
+                    };
+
+
+                    db.Ofertas.Add(_offer);
+                    db.SaveChanges();
+
+                    response.Id = _offer.Id;
                 }
             }
             catch (Exception ex)
@@ -534,7 +539,7 @@ namespace AgroMarket.Service
         /// Crea una intencion de compra a partir de una o mas ofertas del mercado
         /// </summary>
         /// <param name="request">request</param>
-        /// <returns>Create request response</returns>
+        /// <returns>Id d ela intencion creada</returns>
         public GeneralResponse CreateIntentionToBuyFromOffers(IntentionToBuyFromOffers request)
         {
             GeneralResponse response = new GeneralResponse();
@@ -824,26 +829,88 @@ namespace AgroMarket.Service
         }
 
         /// <summary>
-        /// Cancela una intencion de compra, solo pueden hacerla las partes involucradas
+        /// Create una intencion de venta
         /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <param name="intentionId">intention id</param>
-        /// <returns>Error de exitosos o fallido segun sea</returns>
-        public ErrorResponse CancelIntentionBuying(string userId, string token, int intentionId)
+        /// <param name="request">request ( ver las propiedades del objeto)</param>
+        /// <returns>Id de la intencion creada</returns>
+        public GeneralResponse CreateIntentionToSell(IntentionToSellRequest request)
         {
-            throw new NotImplementedException();
-        }
+            GeneralResponse response = new GeneralResponse();
 
-        /// <summary>
-        /// Obtiene todas las intenciones de compra disponibles en el mercado. Para uso de la Auditoria.
-        /// </summary>
-        /// <param name="userId">user id</param>
-        /// <param name="token">token</param>
-        /// <returns>Todas las intenciones de compras activas o no</returns>
-        public IntentionBuyingResponse GetAllIntentionsBuying(string userId, string token)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                AccessHelper.Add(request.userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(request.userName, request.token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                if (request.ProductList.Count == 0)
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "Tiene que enviar los productos!."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                    var _user = db.Usuarios.First(x => x.NombreUsuario == request.userName);
+
+                    if (_user.TipoUsuarioId != 2) // TODO: Qitar magic number
+                    {
+                        response.Error.Code = Errores.AG003.ToString();
+                        response.Error.Description = "Usted no es vendedor!"; // TODO: Sacar mensaje de db
+                    }
+
+                    var _intention = new IntencionVenta {
+                        Activo = true,
+                        FechaCreacion = DateTime.Now,
+                        FechaExpiracion = DateTime.Now.AddDays(30), // TODO: Manejar expiracion quitar magic number
+                        IntencionCompraId = request.IntentionToBuydId,
+                        UsuarioId =   _user.Id
+                    };
+
+                    db.IntencionVenta.Add(_intention);
+                    db.SaveChanges();
+
+                    response.Id = _intention.Id;
+
+                    foreach (var prod in request.ProductList)
+                    {
+                        var _producto = db.Productos.FirstOrDefault(x => x.Codigo == prod.ProductCode);
+
+                        if (_producto == null)
+                        {
+                            continue; // TODO: Manejar en caso no existe producto enviado
+                        }
+
+                        db.ProductoIntencionVenta.Add(new ProductoIntencionVenta {
+                            Cantidad = prod.Quantity,
+                            IntencionVentaId = _intention.Id,
+                            PrecioUnidad = prod.PriceUnit,
+                            ProductoId = _producto.Id,
+                            TipoUnidadId = prod.ProductUnit
+                        });
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), request.userName);
+            }
+
+            return response;
         }
 
         /// <summary>

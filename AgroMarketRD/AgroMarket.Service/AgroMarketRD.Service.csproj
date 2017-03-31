@@ -85,6 +85,7 @@
     <Compile Include="Contracts\GeneralResponse.cs" />
     <Compile Include="Contracts\IntentionBuyingResponse.cs" />
     <Compile Include="Contracts\IntentionsSellResponse.cs" />
+    <Compile Include="Requests\IntentionToSellRequest.cs" />
     <Compile Include="Contracts\LoginResponse.cs" />
     <Compile Include="Contracts\OfferResponse.cs" />
     <Compile Include="Contracts\ProductResponse.cs" />

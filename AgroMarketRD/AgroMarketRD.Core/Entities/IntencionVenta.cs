@@ -6,6 +6,7 @@ namespace AgroMarketRD.Core.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("intencion_venta")]
     public partial class IntencionVenta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -18,7 +19,7 @@ namespace AgroMarketRD.Core.Entities
         [Column("usuario_id")]
         public int UsuarioId { get; set; }
         [Column("intencion_compra_id")]
-        public int IntentionCompraId { get; set; }
+        public int IntencionCompraId { get; set; }
         [Column("fecha_creacion")]
         public DateTime FechaCreacion { get; set; }
         [Column("fecha_expiracion")]
