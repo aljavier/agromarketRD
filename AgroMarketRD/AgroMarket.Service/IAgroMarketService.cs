@@ -187,6 +187,13 @@ namespace AgroMarket.Service
         [OperationContract]
         ErrorResponse MakeDeal(string userName, string token, int intentionSellId, int intentionBuyId);
 
-
+        /// <summary>
+        /// Get all finalized sells.
+        /// </summary>
+        /// <param name="userName">user name</param>
+        /// <param name="token">token</param>
+        /// <returns>All sells in the market</returns>
+        [OperationContract]
+        SellsResponse GetAllSells(string userName, string token);
     }
 }

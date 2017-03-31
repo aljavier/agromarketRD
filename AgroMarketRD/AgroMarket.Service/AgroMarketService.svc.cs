@@ -882,7 +882,7 @@ namespace AgroMarket.Service
                     db.SaveChanges();
 
                     response.Id = _intention.Id;
-
+                    // TODO: Validar que NO sea mayor la cantidad a la solicitada
                     foreach (var prod in request.ProductList)
                     {
                         var _producto = db.Productos.FirstOrDefault(x => x.Codigo == prod.ProductCode);
@@ -1232,6 +1232,80 @@ namespace AgroMarket.Service
 
                 response.Code = Errores.AG002.ToString();
                 response.Description = ex.Message;
+
+                LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Obtiene todas las ventas culminadas en el mercado. /!\ PARA USO DE AUDITORIA MAYORMENTE! /!\
+        /// </summary>
+        /// <param name="userName">user name</param>
+        /// <param name="token">token</param>
+        /// <returns>Todas las ventas</returns>
+        public SellsResponse GetAllSells(string userName, string token)
+        {
+            SellsResponse response = new SellsResponse();
+
+            try
+            {
+                AccessHelper.Add(userName, OperationContext.Current);
+
+                if (!AccessHelper.IsSessionValid(userName, token))
+                {
+                    response.Error.Code = Errores.AG003.ToString();
+                    response.Error.Description = "La sesión no es válida."; // TODO: Tomar error desc de la db
+
+                    return response;
+                }
+
+                using (var db = new AgroMarketDbContext())
+                {
+                   
+                    foreach (var sell in db.Ventas.ToList())
+                    {
+                        var _sell = new Sell
+                        {
+                            IntentionBuyId = sell.IntencionCompraId,
+                            IntentionSellId = sell.IntencionVentaId,
+                            CreationDate = sell.Firma.FechaFinal,
+                            BuyerId = sell.IntencionCompra.UsuarioId,
+                            Buyer = db.Usuarios.First(x => x.Id == sell.IntencionCompra.UsuarioId).Nombre,
+                            SellerId = sell.IntencionVenta.UsuarioId,
+                            Seller = db.Usuarios.First(x => x.Id == sell.IntencionVenta.UsuarioId).Nombre
+                        };
+
+                        // CHECK: Se aceptan los productos propuestos por el vendedor en un acuerdo mutuo fuera de este mundo de 01!
+                        foreach (var prod in db.ProductoIntencionVenta
+                            .Where(x => x.IntencionVentaId == sell.IntencionVentaId).ToList())
+                        {
+                            var _producto = db.Productos.FirstOrDefault(x => x.Id == prod.ProductoId);
+                            var _tipoUnidad = db.TipoUnidad.FirstOrDefault(x => x.Id == prod.TipoUnidadId);
+
+                            if (_producto == null || _tipoUnidad == null) continue; // TODO: Manejar error, loguear, etc.
+
+                            _sell.ProductList.Add(new ProductIntention
+                            {
+                                PriceUnit = prod.PrecioUnidad,
+                                ProductCode = _producto.Codigo,
+                                ProductName = _producto.Descripcion,
+                                ProductUnitId = prod.TipoUnidadId,
+                                ProductUnit = _tipoUnidad.Descripcion,
+                                Quantity = prod.Cantidad
+                            });
+
+                            response.SellList.Add(_sell);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                response.Error.Code = Errores.AG002.ToString();
+                response.Error.Description = ex.Message;
 
                 LogHelper.AddLog(ex.Message, ex.ToString(), ex.StackTrace.ToString(), userName);
             }

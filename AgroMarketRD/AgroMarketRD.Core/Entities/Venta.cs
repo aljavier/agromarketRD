@@ -16,5 +16,9 @@ namespace AgroMarketRD.Core.Entities
         public int IntencionVentaId { get; set; }
 
         public int IntencionCompraId { get; set; }
+
+        public virtual IntencionVenta IntencionVenta { get; set; }
+        public virtual IntencionCompra IntencionCompra { get; set; }
+        public virtual Firma Firma { get; set; }
     }
 }
