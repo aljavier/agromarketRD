@@ -4,3 +4,14 @@ Equipo3: installgentoo1
 Equipo4: winbugs10
 Auditoria: archlinuxftw1
 Equipo7: hope4tales
+
+                        _-== DATOS DE ACCESO ==-_
+
+Integrantes                         Nombre usuario      Contraseña
+Jesús, Ismael y  Kevin	    	    equipo1             debianrulez3
+Juan Alberto y Giselle	    	    equipo2             ubuntuiscooltoo2
+Jose Cordero y Juárez	    	    equipo3             installgentoo1
+Jeremy y Dwane		                equipo4             winbugs10
+Moisés y Laura		                auditoria           archlinuxftw1
+Miguel Alejandro y Cristhian		equipo7             hope4tales
+
