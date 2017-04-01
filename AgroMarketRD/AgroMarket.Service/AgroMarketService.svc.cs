@@ -379,6 +379,7 @@ namespace AgroMarket.Service
                     {
                         response.Offers.Add(new Offer
                         {
+                            Id = _offer.Id,
                             PriceUnit = _offer.PrecioUnidad,
                             ProductCode = _offer.Producto.Codigo,
                             ProductName = _offer.Producto.Descripcion,
@@ -429,6 +430,7 @@ namespace AgroMarket.Service
                 {
                     response.Offers = db.Ofertas.Where(x => x.Activo).Select(x => new Offer
                     {
+                        Id = x.Id,
                         PriceUnit = x.PrecioUnidad,
                         ProductCode = x.Producto.Codigo,
                         ProductName = x.Producto.Descripcion,
