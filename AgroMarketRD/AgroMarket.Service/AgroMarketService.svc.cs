@@ -788,7 +788,7 @@ namespace AgroMarket.Service
                         {
                             Id = _intention.Id,
                             BuyerId = _intention.UsuarioId,
-                            Buyer = db.Usuarios.First(x => x.NombreUsuario == userName).Nombre,
+                            Buyer = db.Usuarios.First(x => x.Id == _intention.UsuarioId).Nombre,
                             DateCreation = _intention.FechaCreacion,
                             IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id && x.Activo).Select(x => x.Id).ToList(),
                             ExpirationDate = _intention.FechaExpiracion,
@@ -814,8 +814,8 @@ namespace AgroMarket.Service
                                 Quantity = prod.cantidad
                             });
 
-                            response.Intentions.Add(_new);
                         }
+                        response.Intentions.Add(_new);
                     }
                 }
             }
