@@ -69,7 +69,7 @@ El servicio web retorna algunos códigos de errores (muy pocos), importante sabe
 1. **AG000**: Todo se procesó exitosamente, no hay errores. 
 2. **AG001**: Error de autentificación.
 3. **AG002**: Una excepción fue lanzada en el sercivio web.
-4. **AG003**: La sesión no es válida. *userName* y/o *token* o no existen en ninguna sesión en la db o expiraron (no se valida expiración actualmente).
+4. **AG003**: La sesión no es válida. *userName* y/o *token* o no son válido o expiraron.
 5. **AG004**: Error genérico controlado, de que algo salío mal. Por ejemplo, *tipo usuario* no es válido para la acción. Ver campo *description* retornado.
 
 ## Notas finales ##
