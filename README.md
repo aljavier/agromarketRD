@@ -40,8 +40,9 @@ para detalles de una intención y ***GetAllIntentionsToBuy*** para obtener todas
 se usa el método ***CreateIntentionToSell***.
 
 **Concretar una venta/compra**: Esto es cuando ambas partes deciden concretar el negocio. Es decir, cuando el *comprador* acepta la oferta que le hace un
-*vendedor/productor*. Para esto ambas partes deben *firmar*, esto es llamar el método ***MakeDeal***. Una vez ambos hagan esto la venta deberá estar disponible en 
-el histórico de ventas.
+*vendedor/productor*. ~Para esto ambas partes deben *firmar*, esto es llamar el método ***MakeDeal***. Una vez ambos hagan esto la venta deberá estar disponible en 
+el histórico de ventas~. Es suficiente con el que el *comprador* llame este método con el id de la intención de compra y el id de la intención de venta
+que ha aceptado.
 
 **Obtener historial de ventas concretadas**: Esto se supone es principalmente de **Auditoría** pero ahora mismo por simplicidad todos los 
 *actores* pueden hacer uso de él. Este retorna todas las ventas que se han concretado (que ambas partes firmaron) y el nombre del método es ***GetAllSells***.

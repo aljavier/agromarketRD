@@ -880,7 +880,7 @@ namespace AgroMarket.Service
                 {
                     var _user = db.Usuarios.First(x => x.NombreUsuario == request.userName);
 
-                    if (_user.TipoUsuarioId != 2) // TODO: Qitar magic number
+                    if (_user.TipoUsuarioId != 2) // TODO: Quitar magic number
                     {
                         response.Error.Code = Errores.AG003.ToString();
                         response.Error.Description = "Usted no es vendedor!"; // TODO: Sacar mensaje de db
@@ -1223,27 +1223,27 @@ namespace AgroMarket.Service
 
                     db.SaveChanges();
 
-                    if (db.Firmas.Any(x => x.Id == _firma.Id && x.Vendedor.HasValue && x.Comprador.HasValue)) // Termino
+                    //if (db.Firmas.Any(x => x.Id == _firma.Id && x.Vendedor.HasValue && x.Comprador.HasValue)) // Termino
+                    //{
+                    var _intention = db.IntencionCompra.First(x => x.Id == intentionSellId);
+
+                    _intention.Activo = true; // TODO: (fix as wish) Esto es un forze de ultimo momento, solo comprador firma y ya esta!
+                    db.Entry(_intention).State = System.Data.Entity.EntityState.Modified;
+
+                    db.Ventas.Add(new Venta
                     {
-                        var _intention = db.IntencionCompra.First(x => x.Id == intentionSellId);
+                        FirmaId = _firma.Id,
+                        IntencionCompraId = intentionBuyId,
+                        IntencionVentaId = intentionSellId,
+                    });
+                    db.SaveChanges();
 
-                        _intention.Activo = false;
-                        db.Entry(_intention).State = System.Data.Entity.EntityState.Modified;
-
-                        db.Ventas.Add(new Venta
-                        {
-                            FirmaId = _firma.Id,
-                            IntencionCompraId = intentionBuyId,
-                            IntencionVentaId = intentionSellId,
-                        });
-                        db.SaveChanges();
-
-                        response.Description = "El pago ha sido terminado. Ambas partes han firmado!";
-                    }
-                    else
-                    {
-                        response.Description = "Todavia la otra parte tiene que firmar para concretarse la venta/compra";
-                    }
+                    response.Description = "El pago ha sido terminado. Ambas partes han firmado!";
+                    //}
+                    //else
+                    //{
+                    //    response.Description = "Todavia la otra parte tiene que firmar para concretarse la venta/compra";
+                    //}
                     #endregion
                 }
             }
