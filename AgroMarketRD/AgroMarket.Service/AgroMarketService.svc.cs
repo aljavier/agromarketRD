@@ -1316,8 +1316,9 @@ namespace AgroMarket.Service
                                 Quantity = prod.Cantidad
                             });
 
-                            response.SellList.Add(_sell);
                         }
+                        response.SellList.Add(_sell);
+
                     }
                 }
             }
