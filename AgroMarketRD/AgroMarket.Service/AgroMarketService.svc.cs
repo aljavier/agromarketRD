@@ -710,13 +710,21 @@ namespace AgroMarket.Service
 
                     if (_intention != null)
                     {
+                        List<int> _intentionsToSellId = new List<int>();
+
+                        if (db.IntencionVenta.Any(x => x.IntencionCompraId == _intention.Id & x.Activo))
+                        {
+                            _intentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id && x.Activo)
+                                .Select(x => x.Id).ToList();
+                        }
+
                         var _new = new IntentionBuying
                         {
                             Id = _intention.Id,
                             BuyerId = _intention.UsuarioId,
-                            Buyer = db.Usuarios.First(x => x.Id == _intention.Id).Nombre,
+                            Buyer = db.Usuarios.First(x => x.Id == _intention.UsuarioId).Nombre,
                             DateCreation = _intention.FechaCreacion,
-                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id && x.Activo).Select(x => x.Id).ToList(),
+                            IntentionsToSellId = _intentionsToSellId,
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
@@ -784,13 +792,20 @@ namespace AgroMarket.Service
 
                     foreach (var _intention in db.IntencionCompra.Where(x => x.Activo).ToList())
                     {
+                        List<int> _intentionsSellId = new List<int>();
+
+                        if (db.IntencionVenta.Any(x => x.IntencionCompraId == _intention.Id & x.Activo))
+                        {
+                            _intentionsSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id && x.Activo).Select(x => x.Id).ToList();
+                        }
+
                         var _new = new IntentionBuying
                         {
                             Id = _intention.Id,
                             BuyerId = _intention.UsuarioId,
                             Buyer = db.Usuarios.First(x => x.Id == _intention.UsuarioId).Nombre,
                             DateCreation = _intention.FechaCreacion,
-                            IntentionsToSellId = db.IntencionVenta.Where(x => x.IntencionCompraId == _intention.Id && x.Activo).Select(x => x.Id).ToList(),
+                            IntentionsToSellId = _intentionsSellId,
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
@@ -1179,7 +1194,9 @@ namespace AgroMarket.Service
                     {
                         _firma = new Firma();
                         _firma.FechaCreacion = DateTime.Now;
-                    } else {
+                    }
+                    else
+                    {
                         _firma.FechaFinal = DateTime.Now;
                     }
 
@@ -1199,7 +1216,8 @@ namespace AgroMarket.Service
                     {
                         db.Entry(_firma).State = System.Data.Entity.EntityState.Modified;
                     }
-                    else {
+                    else
+                    {
                         db.Firmas.Add(_firma);
                     }
 
@@ -1265,7 +1283,7 @@ namespace AgroMarket.Service
 
                 using (var db = new AgroMarketDbContext())
                 {
-                   
+
                     foreach (var sell in db.Ventas.ToList())
                     {
                         var _sell = new Sell
