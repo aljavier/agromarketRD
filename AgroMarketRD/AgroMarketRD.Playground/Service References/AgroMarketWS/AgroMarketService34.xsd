@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7777/AgroMarketService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="LoginResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseAgroContract">
@@ -84,37 +85,33 @@
   <xs:complexType name="OfferResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseAgroContract">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="OfferResponse" nillable="true" type="tns:OfferResponse" />
-  <xs:complexType name="RequestResponse">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseAgroContract">
         <xs:sequence>
-          <xs:element minOccurs="0" name="Requests" nillable="true" type="tns:ArrayOfRequest" />
+          <xs:element minOccurs="0" name="Offers" nillable="true" type="tns:ArrayOfOffer" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="RequestResponse" nillable="true" type="tns:RequestResponse" />
-  <xs:complexType name="ArrayOfRequest">
+  <xs:element name="OfferResponse" nillable="true" type="tns:OfferResponse" />
+  <xs:complexType name="ArrayOfOffer">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Request" nillable="true" type="tns:Request" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Offer" nillable="true" type="tns:Offer" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfRequest" nillable="true" type="tns:ArrayOfRequest" />
-  <xs:complexType name="Request">
+  <xs:element name="ArrayOfOffer" nillable="true" type="tns:ArrayOfOffer" />
+  <xs:complexType name="Offer">
     <xs:sequence>
-      <xs:element minOccurs="0" name="BuyerId" type="xs:int" />
-      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      <xs:element minOccurs="0" name="PriceUnit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductUnit" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ProductUnitId" type="xs:int" />
+      <xs:element minOccurs="0" name="Productor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductorId" type="xs:int" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Request" nillable="true" type="tns:Request" />
+  <xs:element name="Offer" nillable="true" type="tns:Offer" />
   <xs:complexType name="IntentionBuyingResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseAgroContract">
@@ -133,12 +130,86 @@
   <xs:element name="ArrayOfIntentionBuying" nillable="true" type="tns:ArrayOfIntentionBuying" />
   <xs:complexType name="IntentionBuying">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Buyer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BuyerId" type="xs:int" />
+      <xs:element minOccurs="0" name="DateCreation" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ExpirationDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="OfferId" type="xs:int" />
-      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
-      <xs:element minOccurs="0" name="RequestId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="IntentionsToSellId" nillable="true" type="q1:ArrayOfint" />
+      <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfProductIntention" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="IntentionBuying" nillable="true" type="tns:IntentionBuying" />
+  <xs:complexType name="ArrayOfProductIntention">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductIntention" nillable="true" type="tns:ProductIntention" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductIntention" nillable="true" type="tns:ArrayOfProductIntention" />
+  <xs:complexType name="ProductIntention">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PriceUnit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductUnit" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductUnitId" type="xs:int" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductIntention" nillable="true" type="tns:ProductIntention" />
+  <xs:complexType name="IntentionsSellResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseAgroContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Intentions" nillable="true" type="tns:ArrayOfIntentionSell" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntentionsSellResponse" nillable="true" type="tns:IntentionsSellResponse" />
+  <xs:complexType name="ArrayOfIntentionSell">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IntentionSell" nillable="true" type="tns:IntentionSell" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIntentionSell" nillable="true" type="tns:ArrayOfIntentionSell" />
+  <xs:complexType name="IntentionSell">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateCreation" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfProductIntention" />
+      <xs:element minOccurs="0" name="Seller" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SellerId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IntentionSell" nillable="true" type="tns:IntentionSell" />
+  <xs:complexType name="SellsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseAgroContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SellList" nillable="true" type="tns:ArrayOfSell" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SellsResponse" nillable="true" type="tns:SellsResponse" />
+  <xs:complexType name="ArrayOfSell">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Sell" nillable="true" type="tns:Sell" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSell" nillable="true" type="tns:ArrayOfSell" />
+  <xs:complexType name="Sell">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Buyer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BuyerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IntentionBuyId" type="xs:int" />
+      <xs:element minOccurs="0" name="IntentionSellId" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfProductIntention" />
+      <xs:element minOccurs="0" name="Seller" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SellerId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Sell" nillable="true" type="tns:Sell" />
 </xs:schema>

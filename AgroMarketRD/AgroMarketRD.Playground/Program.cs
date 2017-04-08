@@ -14,33 +14,38 @@ namespace AgroMarketRD.Playground
             try
             {
                 // Get Guid
-                Console.WriteLine($"Guid >> {Guid.NewGuid().ToString()}");  // Input key para cryptohelper
-                Console.WriteLine($"Otro Guid >> {Guid.NewGuid().ToString()}"); // SALT KEY para cryptohelper
+                //Console.WriteLine($"Guid >> {Guid.NewGuid().ToString()}");  // Input key para cryptohelper
+                //Console.WriteLine($"Otro Guid >> {Guid.NewGuid().ToString()}"); // SALT KEY para cryptohelper
 
-                Console.Write("Password en plain text >> ");
+                //Console.Write("Password en plain text >> ");
 
-                string _input = Console.ReadLine();
-                string _cipher = CryptoHelper.Encrypt(_input);
+                //string _input = Console.ReadLine();
+                //string _cipher = CryptoHelper.Encrypt(_input);
 
-                Console.WriteLine($"Cifrada >> {_cipher}");
-                Console.WriteLine($"Descifrada >> {CryptoHelper.Decrypt(_cipher)}");
+                //Console.WriteLine($"Cifrada >> {_cipher}");
+                //Console.WriteLine($"Descifrada >> {CryptoHelper.Decrypt(_cipher)}");
                 #region Test login
 
-                //using (AgroMarketWS.AgroMarketServiceClient ws = new AgroMarketWS.AgroMarketServiceClient())
-                //{
-                //    Console.WriteLine(">>>> TEST LOGIN <<<<");
-                //    Console.Write("User: ");
-                //    string userName = Console.ReadLine();
-                //    Console.Write("\r\nPasswd: ");
-                //    string passwd = Console.ReadLine();
+                using (AgroMarketWS.AgroMarketServiceClient ws = new AgroMarketWS.AgroMarketServiceClient())
+                {
+                    Console.WriteLine(">>>> TEST LOGIN <<<<");
+                    Console.Write("User: ");
+                    string userName = Console.ReadLine();
+                    Console.Write("\r\nPasswd: ");
+                    string passwd = Console.ReadLine();
 
-                //    var _response = ws.SignIn(userName.Trim(), CryptoHelper.Encrypt(passwd.Trim()));
-                //    StringBuilder sb = new StringBuilder();
-                //    sb.AppendLine($"Error ==> Codigo: {_response.Error.Code} : Descripcion: {_response.Error.Description}");
-                //    sb.AppendLine($"Token: {_response.Token} : UserName: {_response.UserName}");
-                //    Console.WriteLine($"Response: {sb.ToString()}");
-                //    Console.WriteLine(">>>>> END <<<<<<\r\n");
-                //}
+                    var _response = ws.SignIn(userName.Trim(), passwd.Trim());
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine($"Error ==> Codigo: {_response.Error.Code} : Descripcion: {_response.Error.Description}");
+                    sb.AppendLine($"Token: {_response.Token} : UserName: {_response.UserName}");
+                    Console.WriteLine($"Response: {sb.ToString()}");
+                    Console.WriteLine(">>>>> END <<<<<<\r\n");
+
+                    var products = ws.GetProducts(_response.UserName, _response.Token);
+
+                    Console.WriteLine($"Cantidad de productos: {products.Products.Count()}");
+                    Console.WriteLine($"Respuesta: {products.Error.Description}");
+                }
                 #endregion
             }
             catch (Exception ex)

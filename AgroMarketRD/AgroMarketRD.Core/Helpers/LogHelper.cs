@@ -35,9 +35,9 @@ namespace AgroMarketRD.Core.Helpers
                     db.ErrorLog.Add(new Entities.ErrorLog
                     {
                         Mensaje = mensaje,
-                        Excepcion = excepcion,
-                        StackTrace = stacktrace,
-                        Usuario = usuario,
+                        Excepcion = excepcion ?? string.Empty,
+                        StackTrace = stacktrace ?? string.Empty,
+                        Usuario = usuario ?? string.Empty,
                         FechaCreacion = DateTime.Now
                     });
 

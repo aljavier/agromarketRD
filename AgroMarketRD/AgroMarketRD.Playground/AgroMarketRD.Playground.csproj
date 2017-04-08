@@ -64,6 +64,9 @@
     <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.LoginResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -75,19 +78,6 @@
     </None>
     <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.RequestResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AgroMarketWS\AgroMarketService.wsdl" />
-    <None Include="Service References\AgroMarketWS\AgroMarketService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AgroMarketWS\AgroMarketService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AgroMarketWS\AgroMarketService2.xsd">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +93,25 @@
     <WCFMetadataStorage Include="Service References\AgroMarketWS\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\AgroMarketWS\AgroMarketRD.Playground.AgroMarketWS.SellsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService1.wsdl" />
+    <None Include="Service References\AgroMarketWS\AgroMarketService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AgroMarketWS\AgroMarketService34.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AgroMarketWS\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>

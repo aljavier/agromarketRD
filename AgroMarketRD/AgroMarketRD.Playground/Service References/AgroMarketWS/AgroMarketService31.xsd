@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7777/AgroMarketService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="IntentionToBuyFromProducts">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfInnerProductRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntentionToBuyFromProducts" nillable="true" type="tns:IntentionToBuyFromProducts" />
+  <xs:complexType name="BaseRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseRequest" nillable="true" type="tns:BaseRequest" />
+  <xs:complexType name="ArrayOfInnerProductRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InnerProductRequest" nillable="true" type="tns:InnerProductRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInnerProductRequest" nillable="true" type="tns:ArrayOfInnerProductRequest" />
+  <xs:complexType name="InnerProductRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PriceUnit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProductCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductUnit" type="xs:int" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InnerProductRequest" nillable="true" type="tns:InnerProductRequest" />
+  <xs:complexType name="IntentionToBuyFromOffers">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="OffersId" nillable="true" type="q1:ArrayOfint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntentionToBuyFromOffers" nillable="true" type="tns:IntentionToBuyFromOffers" />
+  <xs:complexType name="IntentionToSellRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IntentionToBuydId" type="xs:int" />
+          <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfInnerProductRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntentionToSellRequest" nillable="true" type="tns:IntentionToSellRequest" />
+</xs:schema>

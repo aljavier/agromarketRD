@@ -720,7 +720,7 @@ namespace AgroMarket.Service
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
-                        foreach (var prod in db.ProductoIntencionCompra.Where(x => x.IntencionCompraId == _intention.Id))
+                        foreach (var prod in db.ProductoIntencionCompra.Where(x => x.IntencionCompraId == _intention.Id).ToList())
                         {
                             var _producto = db.Productos.FirstOrDefault(x => x.Id == prod.ProductoId);
                             var _tipoUnidad = db.TipoUnidad.FirstOrDefault(x => x.Id == prod.TipoUnidadId);
@@ -794,7 +794,7 @@ namespace AgroMarket.Service
                             ExpirationDate = _intention.FechaExpiracion,
                         };
 
-                        foreach (var prod in db.ProductoIntencionCompra.Where(x => x.IntencionCompraId == _intention.Id))
+                        foreach (var prod in db.ProductoIntencionCompra.Where(x => x.IntencionCompraId == _intention.Id).ToList())
                         {
                             var _producto = db.Productos.FirstOrDefault(x => x.Id == prod.ProductoId);
                             var _tipoUnidad = db.TipoUnidad.FirstOrDefault(x => x.Id == prod.TipoUnidadId);

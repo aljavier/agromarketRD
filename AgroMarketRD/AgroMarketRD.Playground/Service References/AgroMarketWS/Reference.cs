@@ -21,8 +21,9 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.GeneralResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.OfferResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.RequestResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.SellsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.LoginResponse))]
     public partial class BaseAgroContract : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -200,26 +201,19 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
     [System.Runtime.Serialization.DataContractAttribute(Name="OfferResponse", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
     [System.SerializableAttribute()]
     public partial class OfferResponse : AgroMarketRD.Playground.AgroMarketWS.BaseAgroContract {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RequestResponse", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
-    [System.SerializableAttribute()]
-    public partial class RequestResponse : AgroMarketRD.Playground.AgroMarketWS.BaseAgroContract {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AgroMarketRD.Playground.AgroMarketWS.Request[] RequestsField;
+        private AgroMarketRD.Playground.AgroMarketWS.Offer[] OffersField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public AgroMarketRD.Playground.AgroMarketWS.Request[] Requests {
+        public AgroMarketRD.Playground.AgroMarketWS.Offer[] Offers {
             get {
-                return this.RequestsField;
+                return this.OffersField;
             }
             set {
-                if ((object.ReferenceEquals(this.RequestsField, value) != true)) {
-                    this.RequestsField = value;
-                    this.RaisePropertyChanged("Requests");
+                if ((object.ReferenceEquals(this.OffersField, value) != true)) {
+                    this.OffersField = value;
+                    this.RaisePropertyChanged("Offers");
                 }
             }
         }
@@ -243,6 +237,52 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
                 if ((object.ReferenceEquals(this.IntentionsField, value) != true)) {
                     this.IntentionsField = value;
                     this.RaisePropertyChanged("Intentions");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IntentionsSellResponse", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class IntentionsSellResponse : AgroMarketRD.Playground.AgroMarketWS.BaseAgroContract {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AgroMarketRD.Playground.AgroMarketWS.IntentionSell[] IntentionsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgroMarketRD.Playground.AgroMarketWS.IntentionSell[] Intentions {
+            get {
+                return this.IntentionsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IntentionsField, value) != true)) {
+                    this.IntentionsField = value;
+                    this.RaisePropertyChanged("Intentions");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SellsResponse", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class SellsResponse : AgroMarketRD.Playground.AgroMarketWS.BaseAgroContract {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AgroMarketRD.Playground.AgroMarketWS.Sell[] SellListField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgroMarketRD.Playground.AgroMarketWS.Sell[] SellList {
+            get {
+                return this.SellListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SellListField, value) != true)) {
+                    this.SellListField = value;
+                    this.RaisePropertyChanged("SellList");
                 }
             }
         }
@@ -427,27 +467,39 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Offer", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
     [System.SerializableAttribute()]
-    public partial class Request : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Offer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int BuyerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CommentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ProductIdField;
+        private decimal PriceUnitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductUnitField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ProductUnitIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductorIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -456,32 +508,6 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int BuyerId {
-            get {
-                return this.BuyerIdField;
-            }
-            set {
-                if ((this.BuyerIdField.Equals(value) != true)) {
-                    this.BuyerIdField = value;
-                    this.RaisePropertyChanged("BuyerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Comment {
-            get {
-                return this.CommentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CommentField, value) != true)) {
-                    this.CommentField = value;
-                    this.RaisePropertyChanged("Comment");
-                }
             }
         }
         
@@ -499,14 +525,53 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ProductId {
+        public decimal PriceUnit {
             get {
-                return this.ProductIdField;
+                return this.PriceUnitField;
             }
             set {
-                if ((this.ProductIdField.Equals(value) != true)) {
-                    this.ProductIdField = value;
-                    this.RaisePropertyChanged("ProductId");
+                if ((this.PriceUnitField.Equals(value) != true)) {
+                    this.PriceUnitField = value;
+                    this.RaisePropertyChanged("PriceUnit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductCode {
+            get {
+                return this.ProductCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductCodeField, value) != true)) {
+                    this.ProductCodeField = value;
+                    this.RaisePropertyChanged("ProductCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductName {
+            get {
+                return this.ProductNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductNameField, value) != true)) {
+                    this.ProductNameField = value;
+                    this.RaisePropertyChanged("ProductName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductUnit {
+            get {
+                return this.ProductUnitField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductUnitField, value) != true)) {
+                    this.ProductUnitField = value;
+                    this.RaisePropertyChanged("ProductUnit");
                 }
             }
         }
@@ -520,6 +585,45 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
                 if ((this.ProductUnitIdField.Equals(value) != true)) {
                     this.ProductUnitIdField = value;
                     this.RaisePropertyChanged("ProductUnitId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Productor {
+            get {
+                return this.ProductorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductorField, value) != true)) {
+                    this.ProductorField = value;
+                    this.RaisePropertyChanged("Productor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductorId {
+            get {
+                return this.ProductorIdField;
+            }
+            set {
+                if ((this.ProductorIdField.Equals(value) != true)) {
+                    this.ProductorIdField = value;
+                    this.RaisePropertyChanged("ProductorId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
                 }
             }
         }
@@ -544,19 +648,25 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BuyerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BuyerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateCreationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime ExpirationDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int OfferIdField;
+        private int[] IntentionsToSellIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int QuantityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RequestIdField;
+        private AgroMarketRD.Playground.AgroMarketWS.ProductIntention[] ProductListField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -565,6 +675,45 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Buyer {
+            get {
+                return this.BuyerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BuyerField, value) != true)) {
+                    this.BuyerField = value;
+                    this.RaisePropertyChanged("Buyer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BuyerId {
+            get {
+                return this.BuyerIdField;
+            }
+            set {
+                if ((this.BuyerIdField.Equals(value) != true)) {
+                    this.BuyerIdField = value;
+                    this.RaisePropertyChanged("BuyerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreation {
+            get {
+                return this.DateCreationField;
+            }
+            set {
+                if ((this.DateCreationField.Equals(value) != true)) {
+                    this.DateCreationField = value;
+                    this.RaisePropertyChanged("DateCreation");
+                }
             }
         }
         
@@ -595,14 +744,647 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int OfferId {
+        public int[] IntentionsToSellId {
             get {
-                return this.OfferIdField;
+                return this.IntentionsToSellIdField;
             }
             set {
-                if ((this.OfferIdField.Equals(value) != true)) {
-                    this.OfferIdField = value;
-                    this.RaisePropertyChanged("OfferId");
+                if ((object.ReferenceEquals(this.IntentionsToSellIdField, value) != true)) {
+                    this.IntentionsToSellIdField = value;
+                    this.RaisePropertyChanged("IntentionsToSellId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgroMarketRD.Playground.AgroMarketWS.ProductIntention[] ProductList {
+            get {
+                return this.ProductListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductListField, value) != true)) {
+                    this.ProductListField = value;
+                    this.RaisePropertyChanged("ProductList");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProductIntention", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class ProductIntention : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PriceUnitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductUnitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductUnitIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal QuantityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PriceUnit {
+            get {
+                return this.PriceUnitField;
+            }
+            set {
+                if ((this.PriceUnitField.Equals(value) != true)) {
+                    this.PriceUnitField = value;
+                    this.RaisePropertyChanged("PriceUnit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductCode {
+            get {
+                return this.ProductCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductCodeField, value) != true)) {
+                    this.ProductCodeField = value;
+                    this.RaisePropertyChanged("ProductCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductName {
+            get {
+                return this.ProductNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductNameField, value) != true)) {
+                    this.ProductNameField = value;
+                    this.RaisePropertyChanged("ProductName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductUnit {
+            get {
+                return this.ProductUnitField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductUnitField, value) != true)) {
+                    this.ProductUnitField = value;
+                    this.RaisePropertyChanged("ProductUnit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductUnitId {
+            get {
+                return this.ProductUnitIdField;
+            }
+            set {
+                if ((this.ProductUnitIdField.Equals(value) != true)) {
+                    this.ProductUnitIdField = value;
+                    this.RaisePropertyChanged("ProductUnitId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IntentionSell", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class IntentionSell : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateCreationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AgroMarketRD.Playground.AgroMarketWS.ProductIntention[] ProductListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SellerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SellerIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreation {
+            get {
+                return this.DateCreationField;
+            }
+            set {
+                if ((this.DateCreationField.Equals(value) != true)) {
+                    this.DateCreationField = value;
+                    this.RaisePropertyChanged("DateCreation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgroMarketRD.Playground.AgroMarketWS.ProductIntention[] ProductList {
+            get {
+                return this.ProductListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductListField, value) != true)) {
+                    this.ProductListField = value;
+                    this.RaisePropertyChanged("ProductList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Seller {
+            get {
+                return this.SellerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SellerField, value) != true)) {
+                    this.SellerField = value;
+                    this.RaisePropertyChanged("Seller");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SellerId {
+            get {
+                return this.SellerIdField;
+            }
+            set {
+                if ((this.SellerIdField.Equals(value) != true)) {
+                    this.SellerIdField = value;
+                    this.RaisePropertyChanged("SellerId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Sell", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Contracts")]
+    [System.SerializableAttribute()]
+    public partial class Sell : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BuyerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BuyerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> CreationDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IntentionBuyIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IntentionSellIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AgroMarketRD.Playground.AgroMarketWS.ProductIntention[] ProductListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SellerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SellerIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Buyer {
+            get {
+                return this.BuyerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BuyerField, value) != true)) {
+                    this.BuyerField = value;
+                    this.RaisePropertyChanged("Buyer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BuyerId {
+            get {
+                return this.BuyerIdField;
+            }
+            set {
+                if ((this.BuyerIdField.Equals(value) != true)) {
+                    this.BuyerIdField = value;
+                    this.RaisePropertyChanged("BuyerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> CreationDate {
+            get {
+                return this.CreationDateField;
+            }
+            set {
+                if ((this.CreationDateField.Equals(value) != true)) {
+                    this.CreationDateField = value;
+                    this.RaisePropertyChanged("CreationDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IntentionBuyId {
+            get {
+                return this.IntentionBuyIdField;
+            }
+            set {
+                if ((this.IntentionBuyIdField.Equals(value) != true)) {
+                    this.IntentionBuyIdField = value;
+                    this.RaisePropertyChanged("IntentionBuyId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IntentionSellId {
+            get {
+                return this.IntentionSellIdField;
+            }
+            set {
+                if ((this.IntentionSellIdField.Equals(value) != true)) {
+                    this.IntentionSellIdField = value;
+                    this.RaisePropertyChanged("IntentionSellId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgroMarketRD.Playground.AgroMarketWS.ProductIntention[] ProductList {
+            get {
+                return this.ProductListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductListField, value) != true)) {
+                    this.ProductListField = value;
+                    this.RaisePropertyChanged("ProductList");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Seller {
+            get {
+                return this.SellerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SellerField, value) != true)) {
+                    this.SellerField = value;
+                    this.RaisePropertyChanged("Seller");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int SellerId {
+            get {
+                return this.SellerIdField;
+            }
+            set {
+                if ((this.SellerIdField.Equals(value) != true)) {
+                    this.SellerIdField = value;
+                    this.RaisePropertyChanged("SellerId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequest", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromOffers))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.IntentionToSellRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromProducts))]
+    public partial class BaseRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string tokenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string userNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string token {
+            get {
+                return this.tokenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.tokenField, value) != true)) {
+                    this.tokenField = value;
+                    this.RaisePropertyChanged("token");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string userName {
+            get {
+                return this.userNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.userNameField, value) != true)) {
+                    this.userNameField = value;
+                    this.RaisePropertyChanged("userName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IntentionToBuyFromOffers", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests")]
+    [System.SerializableAttribute()]
+    public partial class IntentionToBuyFromOffers : AgroMarketRD.Playground.AgroMarketWS.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] OffersIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] OffersId {
+            get {
+                return this.OffersIdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OffersIdField, value) != true)) {
+                    this.OffersIdField = value;
+                    this.RaisePropertyChanged("OffersId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IntentionToSellRequest", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests")]
+    [System.SerializableAttribute()]
+    public partial class IntentionToSellRequest : AgroMarketRD.Playground.AgroMarketWS.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IntentionToBuydIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AgroMarketRD.Playground.AgroMarketWS.InnerProductRequest[] ProductListField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IntentionToBuydId {
+            get {
+                return this.IntentionToBuydIdField;
+            }
+            set {
+                if ((this.IntentionToBuydIdField.Equals(value) != true)) {
+                    this.IntentionToBuydIdField = value;
+                    this.RaisePropertyChanged("IntentionToBuydId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgroMarketRD.Playground.AgroMarketWS.InnerProductRequest[] ProductList {
+            get {
+                return this.ProductListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductListField, value) != true)) {
+                    this.ProductListField = value;
+                    this.RaisePropertyChanged("ProductList");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IntentionToBuyFromProducts", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests")]
+    [System.SerializableAttribute()]
+    public partial class IntentionToBuyFromProducts : AgroMarketRD.Playground.AgroMarketWS.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AgroMarketRD.Playground.AgroMarketWS.InnerProductRequest[] ProductListField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AgroMarketRD.Playground.AgroMarketWS.InnerProductRequest[] ProductList {
+            get {
+                return this.ProductListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductListField, value) != true)) {
+                    this.ProductListField = value;
+                    this.RaisePropertyChanged("ProductList");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InnerProductRequest", Namespace="http://schemas.datacontract.org/2004/07/AgroMarketRD.Service.Requests")]
+    [System.SerializableAttribute()]
+    public partial class InnerProductRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PriceUnitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProductCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ProductUnitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PriceUnit {
+            get {
+                return this.PriceUnitField;
+            }
+            set {
+                if ((this.PriceUnitField.Equals(value) != true)) {
+                    this.PriceUnitField = value;
+                    this.RaisePropertyChanged("PriceUnit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProductCode {
+            get {
+                return this.ProductCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProductCodeField, value) != true)) {
+                    this.ProductCodeField = value;
+                    this.RaisePropertyChanged("ProductCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ProductUnit {
+            get {
+                return this.ProductUnitField;
+            }
+            set {
+                if ((this.ProductUnitField.Equals(value) != true)) {
+                    this.ProductUnitField = value;
+                    this.RaisePropertyChanged("ProductUnit");
                 }
             }
         }
@@ -616,19 +1398,6 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
                 if ((this.QuantityField.Equals(value) != true)) {
                     this.QuantityField = value;
                     this.RaisePropertyChanged("Quantity");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RequestId {
-            get {
-                return this.RequestIdField;
-            }
-            set {
-                if ((this.RequestIdField.Equals(value) != true)) {
-                    this.RequestIdField = value;
-                    this.RaisePropertyChanged("RequestId");
                 }
             }
         }
@@ -653,101 +1422,113 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/SignIn", ReplyAction="http://tempuri.org/IAgroMarketService/SignInResponse")]
         System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.LoginResponse> SignInAsync(string userName, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetProducts", ReplyAction="http://tempuri.org/IAgroMarketService/GetProductsResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.ProductResponse GetProducts(string userId, string token);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/LogOff", ReplyAction="http://tempuri.org/IAgroMarketService/LogOffResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse LogOff(string userName, string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/LogOff", ReplyAction="http://tempuri.org/IAgroMarketService/LogOffResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> LogOffAsync(string userName, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetProducts", ReplyAction="http://tempuri.org/IAgroMarketService/GetProductsResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductResponse> GetProductsAsync(string userId, string token);
+        AgroMarketRD.Playground.AgroMarketWS.ProductResponse GetProducts(string userName, string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetProducts", ReplyAction="http://tempuri.org/IAgroMarketService/GetProductsResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductResponse> GetProductsAsync(string userName, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetUnitTypes", ReplyAction="http://tempuri.org/IAgroMarketService/GetUnitTypesResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse GetUnitTypes(string userId, string token);
+        AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse GetUnitTypes(string userName, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetUnitTypes", ReplyAction="http://tempuri.org/IAgroMarketService/GetUnitTypesResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse> GetUnitTypesAsync(string userId, string token);
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse> GetUnitTypesAsync(string userName, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateOffer", ReplyAction="http://tempuri.org/IAgroMarketService/CreateOfferResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateOffer(string userId, string token);
+        AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateOffer(string userName, string token, int cantidad, int tipoUnidad, decimal precioUnidad, string codigoProducto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateOffer", ReplyAction="http://tempuri.org/IAgroMarketService/CreateOfferResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateOfferAsync(string userId, string token);
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateOfferAsync(string userName, string token, int cantidad, int tipoUnidad, decimal precioUnidad, string codigoProducto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveOffer", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveOfferResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveOffer(string userId, string token, int offerId);
+        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveOffer(string userName, string token, int offerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveOffer", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveOfferResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveOfferAsync(string userId, string token, int offerId);
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveOfferAsync(string userName, string token, int offerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetOffer", ReplyAction="http://tempuri.org/IAgroMarketService/GetOfferResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetOffer(string userId, string token, int offerId);
+        AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetOffer(string userName, string token, int offerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetOffer", ReplyAction="http://tempuri.org/IAgroMarketService/GetOfferResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetOfferAsync(string userId, string token, int offerId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetOffersProductor", ReplyAction="http://tempuri.org/IAgroMarketService/GetOffersProductorResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetOffersProductor(string userId, string token, int productorId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetOffersProductor", ReplyAction="http://tempuri.org/IAgroMarketService/GetOffersProductorResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetOffersProductorAsync(string userId, string token, int productorId);
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetOfferAsync(string userName, string token, int offerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllOffers", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllOffersResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetAllOffers(string userId, string token);
+        AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetAllOffers(string userName, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllOffers", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllOffersResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetAllOffersAsync(string userId, string token);
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetAllOffersAsync(string userName, string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateRequest", ReplyAction="http://tempuri.org/IAgroMarketService/CreateRequestResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateRequest(string userId, string token, int productId, int quantity);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateIntentionToBuy(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromProducts request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateRequest", ReplyAction="http://tempuri.org/IAgroMarketService/CreateRequestResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateRequestAsync(string userId, string token, int productId, int quantity);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateIntentionToBuyAsync(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromProducts request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveRequest", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveRequestResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveRequest(string userId, string token, int requestId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffers", ReplyAction="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffersResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateIntentionToBuyFromOffers(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromOffers request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveRequest", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveRequestResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveRequestAsync(string userId, string token, int requestId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffers", ReplyAction="http://tempuri.org/IAgroMarketService/CreateIntentionToBuyFromOffersResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateIntentionToBuyFromOffersAsync(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromOffers request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetRequest", ReplyAction="http://tempuri.org/IAgroMarketService/GetRequestResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.RequestResponse GetRequest(string userId, string token, int requestId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveIntentionToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveIntentionToBuyResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveIntentionToBuy(string userName, string token, int intentionId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetRequest", ReplyAction="http://tempuri.org/IAgroMarketService/GetRequestResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.RequestResponse> GetRequestAsync(string userId, string token, int requestId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveIntentionToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveIntentionToBuyResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveIntentionToBuyAsync(string userName, string token, int intentionId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetRequestsBuyer", ReplyAction="http://tempuri.org/IAgroMarketService/GetRequestsBuyerResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.RequestResponse GetRequestsBuyer(string userId, string token, int buyerId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionToBuyResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetIntentionToBuy(string userName, string token, int intentionId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetRequestsBuyer", ReplyAction="http://tempuri.org/IAgroMarketService/GetRequestsBuyerResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.RequestResponse> GetRequestsBuyerAsync(string userId, string token, int buyerId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionToBuyResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetIntentionToBuyAsync(string userName, string token, int intentionId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllRequests", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllRequestsResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.RequestResponse GetAllRequests(string userId, string token);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuyResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetAllIntentionsToBuy(string userName, string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllRequests", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllRequestsResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.RequestResponse> GetAllRequestsAsync(string userId, string token);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuy", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllIntentionsToBuyResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetAllIntentionsToBuyAsync(string userName, string token);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionBuying", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionBuyingResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetIntentionBuying(string userId, string token, int intentionId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateIntentionToSell", ReplyAction="http://tempuri.org/IAgroMarketService/CreateIntentionToSellResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateIntentionToSell(AgroMarketRD.Playground.AgroMarketWS.IntentionToSellRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionBuying", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionBuyingResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetIntentionBuyingAsync(string userId, string token, int intentionId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CreateIntentionToSell", ReplyAction="http://tempuri.org/IAgroMarketService/CreateIntentionToSellResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateIntentionToSellAsync(AgroMarketRD.Playground.AgroMarketWS.IntentionToSellRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CancelIntentionBuying", ReplyAction="http://tempuri.org/IAgroMarketService/CancelIntentionBuyingResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse CancelIntentionBuying(string userId, string token, int intentionId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveIntentionToSell", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveIntentionToSellResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveIntentionToSell(string userName, string token, int intentionId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/CancelIntentionBuying", ReplyAction="http://tempuri.org/IAgroMarketService/CancelIntentionBuyingResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> CancelIntentionBuyingAsync(string userId, string token, int intentionId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/RemoveIntentionToSell", ReplyAction="http://tempuri.org/IAgroMarketService/RemoveIntentionToSellResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveIntentionToSellAsync(string userName, string token, int intentionId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllIntentionsBuying", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllIntentionsBuyingResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetAllIntentionsBuying(string userId, string token);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionToSell", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionToSellResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse GetIntentionToSell(string userName, string token, int intentionId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllIntentionsBuying", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllIntentionsBuyingResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetAllIntentionsBuyingAsync(string userId, string token);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionToSell", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionToSellResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse> GetIntentionToSellAsync(string userName, string token, int intentionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionsToSell", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionsToSellResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse GetIntentionsToSell(string userName, string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetIntentionsToSell", ReplyAction="http://tempuri.org/IAgroMarketService/GetIntentionsToSellResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse> GetIntentionsToSellAsync(string userName, string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/MakeDeal", ReplyAction="http://tempuri.org/IAgroMarketService/MakeDealResponse")]
-        AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse MakeDeal(string userId, string token, int offerId, int requestId, int quantity);
+        AgroMarketRD.Playground.AgroMarketWS.ErrorResponse MakeDeal(string userName, string token, int intentionSellId, int intentionBuyId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/MakeDeal", ReplyAction="http://tempuri.org/IAgroMarketService/MakeDealResponse")]
-        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> MakeDealAsync(string userId, string token, int offerId, int requestId, int quantity);
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> MakeDealAsync(string userName, string token, int intentionSellId, int intentionBuyId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllSells", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllSellsResponse")]
+        AgroMarketRD.Playground.AgroMarketWS.SellsResponse GetAllSells(string userName, string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgroMarketService/GetAllSells", ReplyAction="http://tempuri.org/IAgroMarketService/GetAllSellsResponse")]
+        System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.SellsResponse> GetAllSellsAsync(string userName, string token);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -785,132 +1566,148 @@ namespace AgroMarketRD.Playground.AgroMarketWS {
             return base.Channel.SignInAsync(userName, password);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.ProductResponse GetProducts(string userId, string token) {
-            return base.Channel.GetProducts(userId, token);
+        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse LogOff(string userName, string token) {
+            return base.Channel.LogOff(userName, token);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductResponse> GetProductsAsync(string userId, string token) {
-            return base.Channel.GetProductsAsync(userId, token);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> LogOffAsync(string userName, string token) {
+            return base.Channel.LogOffAsync(userName, token);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse GetUnitTypes(string userId, string token) {
-            return base.Channel.GetUnitTypes(userId, token);
+        public AgroMarketRD.Playground.AgroMarketWS.ProductResponse GetProducts(string userName, string token) {
+            return base.Channel.GetProducts(userName, token);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse> GetUnitTypesAsync(string userId, string token) {
-            return base.Channel.GetUnitTypesAsync(userId, token);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductResponse> GetProductsAsync(string userName, string token) {
+            return base.Channel.GetProductsAsync(userName, token);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateOffer(string userId, string token) {
-            return base.Channel.CreateOffer(userId, token);
+        public AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse GetUnitTypes(string userName, string token) {
+            return base.Channel.GetUnitTypes(userName, token);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateOfferAsync(string userId, string token) {
-            return base.Channel.CreateOfferAsync(userId, token);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ProductUnitResponse> GetUnitTypesAsync(string userName, string token) {
+            return base.Channel.GetUnitTypesAsync(userName, token);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveOffer(string userId, string token, int offerId) {
-            return base.Channel.RemoveOffer(userId, token, offerId);
+        public AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateOffer(string userName, string token, int cantidad, int tipoUnidad, decimal precioUnidad, string codigoProducto) {
+            return base.Channel.CreateOffer(userName, token, cantidad, tipoUnidad, precioUnidad, codigoProducto);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveOfferAsync(string userId, string token, int offerId) {
-            return base.Channel.RemoveOfferAsync(userId, token, offerId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateOfferAsync(string userName, string token, int cantidad, int tipoUnidad, decimal precioUnidad, string codigoProducto) {
+            return base.Channel.CreateOfferAsync(userName, token, cantidad, tipoUnidad, precioUnidad, codigoProducto);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetOffer(string userId, string token, int offerId) {
-            return base.Channel.GetOffer(userId, token, offerId);
+        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveOffer(string userName, string token, int offerId) {
+            return base.Channel.RemoveOffer(userName, token, offerId);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetOfferAsync(string userId, string token, int offerId) {
-            return base.Channel.GetOfferAsync(userId, token, offerId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveOfferAsync(string userName, string token, int offerId) {
+            return base.Channel.RemoveOfferAsync(userName, token, offerId);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetOffersProductor(string userId, string token, int productorId) {
-            return base.Channel.GetOffersProductor(userId, token, productorId);
+        public AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetOffer(string userName, string token, int offerId) {
+            return base.Channel.GetOffer(userName, token, offerId);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetOffersProductorAsync(string userId, string token, int productorId) {
-            return base.Channel.GetOffersProductorAsync(userId, token, productorId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetOfferAsync(string userName, string token, int offerId) {
+            return base.Channel.GetOfferAsync(userName, token, offerId);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetAllOffers(string userId, string token) {
-            return base.Channel.GetAllOffers(userId, token);
+        public AgroMarketRD.Playground.AgroMarketWS.OfferResponse GetAllOffers(string userName, string token) {
+            return base.Channel.GetAllOffers(userName, token);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetAllOffersAsync(string userId, string token) {
-            return base.Channel.GetAllOffersAsync(userId, token);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.OfferResponse> GetAllOffersAsync(string userName, string token) {
+            return base.Channel.GetAllOffersAsync(userName, token);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateRequest(string userId, string token, int productId, int quantity) {
-            return base.Channel.CreateRequest(userId, token, productId, quantity);
+        public AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateIntentionToBuy(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromProducts request) {
+            return base.Channel.CreateIntentionToBuy(request);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateRequestAsync(string userId, string token, int productId, int quantity) {
-            return base.Channel.CreateRequestAsync(userId, token, productId, quantity);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateIntentionToBuyAsync(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromProducts request) {
+            return base.Channel.CreateIntentionToBuyAsync(request);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveRequest(string userId, string token, int requestId) {
-            return base.Channel.RemoveRequest(userId, token, requestId);
+        public AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateIntentionToBuyFromOffers(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromOffers request) {
+            return base.Channel.CreateIntentionToBuyFromOffers(request);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveRequestAsync(string userId, string token, int requestId) {
-            return base.Channel.RemoveRequestAsync(userId, token, requestId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateIntentionToBuyFromOffersAsync(AgroMarketRD.Playground.AgroMarketWS.IntentionToBuyFromOffers request) {
+            return base.Channel.CreateIntentionToBuyFromOffersAsync(request);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.RequestResponse GetRequest(string userId, string token, int requestId) {
-            return base.Channel.GetRequest(userId, token, requestId);
+        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveIntentionToBuy(string userName, string token, int intentionId) {
+            return base.Channel.RemoveIntentionToBuy(userName, token, intentionId);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.RequestResponse> GetRequestAsync(string userId, string token, int requestId) {
-            return base.Channel.GetRequestAsync(userId, token, requestId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveIntentionToBuyAsync(string userName, string token, int intentionId) {
+            return base.Channel.RemoveIntentionToBuyAsync(userName, token, intentionId);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.RequestResponse GetRequestsBuyer(string userId, string token, int buyerId) {
-            return base.Channel.GetRequestsBuyer(userId, token, buyerId);
+        public AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetIntentionToBuy(string userName, string token, int intentionId) {
+            return base.Channel.GetIntentionToBuy(userName, token, intentionId);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.RequestResponse> GetRequestsBuyerAsync(string userId, string token, int buyerId) {
-            return base.Channel.GetRequestsBuyerAsync(userId, token, buyerId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetIntentionToBuyAsync(string userName, string token, int intentionId) {
+            return base.Channel.GetIntentionToBuyAsync(userName, token, intentionId);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.RequestResponse GetAllRequests(string userId, string token) {
-            return base.Channel.GetAllRequests(userId, token);
+        public AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetAllIntentionsToBuy(string userName, string token) {
+            return base.Channel.GetAllIntentionsToBuy(userName, token);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.RequestResponse> GetAllRequestsAsync(string userId, string token) {
-            return base.Channel.GetAllRequestsAsync(userId, token);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetAllIntentionsToBuyAsync(string userName, string token) {
+            return base.Channel.GetAllIntentionsToBuyAsync(userName, token);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetIntentionBuying(string userId, string token, int intentionId) {
-            return base.Channel.GetIntentionBuying(userId, token, intentionId);
+        public AgroMarketRD.Playground.AgroMarketWS.GeneralResponse CreateIntentionToSell(AgroMarketRD.Playground.AgroMarketWS.IntentionToSellRequest request) {
+            return base.Channel.CreateIntentionToSell(request);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetIntentionBuyingAsync(string userId, string token, int intentionId) {
-            return base.Channel.GetIntentionBuyingAsync(userId, token, intentionId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.GeneralResponse> CreateIntentionToSellAsync(AgroMarketRD.Playground.AgroMarketWS.IntentionToSellRequest request) {
+            return base.Channel.CreateIntentionToSellAsync(request);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse CancelIntentionBuying(string userId, string token, int intentionId) {
-            return base.Channel.CancelIntentionBuying(userId, token, intentionId);
+        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse RemoveIntentionToSell(string userName, string token, int intentionId) {
+            return base.Channel.RemoveIntentionToSell(userName, token, intentionId);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> CancelIntentionBuyingAsync(string userId, string token, int intentionId) {
-            return base.Channel.CancelIntentionBuyingAsync(userId, token, intentionId);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> RemoveIntentionToSellAsync(string userName, string token, int intentionId) {
+            return base.Channel.RemoveIntentionToSellAsync(userName, token, intentionId);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse GetAllIntentionsBuying(string userId, string token) {
-            return base.Channel.GetAllIntentionsBuying(userId, token);
+        public AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse GetIntentionToSell(string userName, string token, int intentionId) {
+            return base.Channel.GetIntentionToSell(userName, token, intentionId);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> GetAllIntentionsBuyingAsync(string userId, string token) {
-            return base.Channel.GetAllIntentionsBuyingAsync(userId, token);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse> GetIntentionToSellAsync(string userName, string token, int intentionId) {
+            return base.Channel.GetIntentionToSellAsync(userName, token, intentionId);
         }
         
-        public AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse MakeDeal(string userId, string token, int offerId, int requestId, int quantity) {
-            return base.Channel.MakeDeal(userId, token, offerId, requestId, quantity);
+        public AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse GetIntentionsToSell(string userName, string token) {
+            return base.Channel.GetIntentionsToSell(userName, token);
         }
         
-        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionBuyingResponse> MakeDealAsync(string userId, string token, int offerId, int requestId, int quantity) {
-            return base.Channel.MakeDealAsync(userId, token, offerId, requestId, quantity);
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.IntentionsSellResponse> GetIntentionsToSellAsync(string userName, string token) {
+            return base.Channel.GetIntentionsToSellAsync(userName, token);
+        }
+        
+        public AgroMarketRD.Playground.AgroMarketWS.ErrorResponse MakeDeal(string userName, string token, int intentionSellId, int intentionBuyId) {
+            return base.Channel.MakeDeal(userName, token, intentionSellId, intentionBuyId);
+        }
+        
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.ErrorResponse> MakeDealAsync(string userName, string token, int intentionSellId, int intentionBuyId) {
+            return base.Channel.MakeDealAsync(userName, token, intentionSellId, intentionBuyId);
+        }
+        
+        public AgroMarketRD.Playground.AgroMarketWS.SellsResponse GetAllSells(string userName, string token) {
+            return base.Channel.GetAllSells(userName, token);
+        }
+        
+        public System.Threading.Tasks.Task<AgroMarketRD.Playground.AgroMarketWS.SellsResponse> GetAllSellsAsync(string userName, string token) {
+            return base.Channel.GetAllSellsAsync(userName, token);
         }
     }
 }

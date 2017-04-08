@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="U7Q1VK9003b6Y05b/c7A8mMirAk=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="u8QK0/QojRLVWBhX25NJe92fr6w=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAgroMarketService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAgroMarketService" contract="AgroMarketWS.IAgroMarketService" bindingType="basicHttpBinding" address="http://localhost:50629/AgroMarketService.svc" bindingConfiguration="BasicHttpBinding_IAgroMarketService">
+    <endpoint name="BasicHttpBinding_IAgroMarketService" contract="AgroMarketWS.IAgroMarketService" bindingType="basicHttpBinding" address="http://localhost:7777/AgroMarketService.svc" bindingConfiguration="BasicHttpBinding_IAgroMarketService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:50629/AgroMarketService.svc</serializedValue>
+          <serializedValue>http://localhost:7777/AgroMarketService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

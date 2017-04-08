@@ -6,6 +6,7 @@ namespace AgroMarketRD.Core.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("error_log")]
     public partial class ErrorLog
     {
         [Key]
@@ -13,8 +14,7 @@ namespace AgroMarketRD.Core.Entities
         [StringLength(250)]
         public string Mensaje { get; set; }
 
-        [StringLength(350)]
-        [Column("excepcion")]
+        [Column("excepcion", TypeName = "text")]
         public string Excepcion { get; set; }
 
         [Column("stacktrace", TypeName = "text")]
